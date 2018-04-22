@@ -30,7 +30,7 @@
                     <h3 class="uk-heading-line uk-text-center">
                         <span>Conectar em sua conta</span>
                     </h3>
-                    <form action="">
+                    <form action="" id="signin">
                         <div class="uk-margin">
                             <input class="uk-input" type="text" placeholder="Username">
                         </div>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="uk-margin-auto-left uk-text-left">
-                            <a href=#>Esqueceu sua senha?</a>
+                            <a href="#modal-password" uk-toggle>Esqueceu sua senha?</a>
                         </div>
 
                         <div class="uk-margin">
@@ -49,7 +49,7 @@
                     </form>
 
                     <p class="uk-margin-large-top">É novo por aqui viajante?
-                        <a href="">Crie sua conta aqui</a>
+                        <a href="#modal-account" uk-toggle>Crie sua conta aqui</a>
                     </p>
 
                 </div>
@@ -61,6 +61,104 @@
             </div>
         </div>
     </div>
+
+    <!-- create account modal-->
+
+    <div id="modal-account" class="uk-modal-container" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title uk-text-lead">Crie sua conta</h2>
+            </div>
+            <div class="uk-modal-body">
+                <form action="" method="post" id="signup" class="uk-form-stacked uk-margin-large">
+
+                    <div class="uk-flex">
+                        <div class="uk-margin uk-width-1-2">
+                            <label class="uk-form-label" for="name">Nome</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="name" type="text" placeholder="Roberto">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-margin-remove-top uk-margin-left uk-width-1-2">
+                            <label class="uk-form-label" for="lastname">Sobrenome</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="lastname" type="text" placeholder="Silva">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="uk-margin uk-margin-remove-top">
+                        <label class="uk-form-label" for="email">Email</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="email" type="email" placeholder="email@email.com">
+                        </div>
+                    </div>
+
+                    <div class="uk-flex">
+                        <div class="uk-margin uk-width-1-2">
+                            <label class="uk-form-label" for="username">Nome de usuário</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="username" type="text" placeholder="XXXXXXX">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-margin-remove-top uk-margin-left uk-width-1-2">
+                            <label class="uk-form-label" for="password">Senha</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="password" type="password" placeholder="********">
+                            </div>
+                        </div>
+
+                        <div class="uk-margin uk-margin-remove-top uk-margin-left uk-width-1-2">
+                            <label class="uk-form-label" for="repassword">Confirme a senha</label>
+                            <div class="uk-form-controls">
+                                <input class="uk-input" id="repassword" type="password" placeholder="********">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="uk-modal-footer uk-text-left uk-flex">
+                <button class="uk-button uk-button-default uk-modal-close uk-width-1-2@m" type="button">Cancelar</button>
+                <button class="uk-button uk-button-primary uk-width-1-2@m" type="button">Criar conta</button>
+            </div>
+        </div>
+    </div>
+    <!-- end create account modal-->
+
+    <!-- password recover modal -->
+
+    <div id="modal-password" class="uk-modal-container" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title uk-text-lead">Recupere sua senha</h2>
+            </div>
+            <div class="uk-modal-body">
+                <form action="" method="post" id="signup" class="uk-form-stacked uk-margin-large">
+
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="email">Email</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="email" type="email" placeholder="email@email.com">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="uk-modal-footer uk-text-left uk-flex">
+                <button class="uk-button uk-button-default uk-modal-close uk-width-1-2@m" type="button">Cancelar</button>
+                <button class="uk-button uk-button-primary uk-width-1-2@m" type="button">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- end password recover modal -->
 
 </body>
 
