@@ -29,11 +29,11 @@
 
                     <form action="signin" id="signin" class="uk-text-left">
                         <div class="uk-margin">
-                            <input class="uk-input" type="text" placeholder="Username" data-validation="required">
+                            <input class="uk-input" id="loginUsername" name="loginUsername" type="text" placeholder="Username" data-validation="required">
                         </div>
 
                         <div class="uk-margin">
-                            <input class="uk-input" type="password" placeholder="Senha" data-validation="required">
+                            <input class="uk-input" id="loginPassword" name="loginPassword" type="password" placeholder="Senha" data-validation="required">
                         </div>
 
                         <div class="uk-margin">
@@ -74,14 +74,14 @@
                         <div>
                             <label class="uk-form-label" for="name">Nome</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="name" type="text" placeholder="Roberto">
+                                <input class="uk-input" id="name" name="name" type="text" placeholder="Roberto">
                             </div>
                         </div>
 
                         <div>
                             <label class="uk-form-label" for="lastname">Sobrenome</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="lastname" type="text" placeholder="Silva">
+                                <input class="uk-input" id="lastname" name="lastname" type="text" placeholder="Silva">
                             </div>
                         </div>
 
@@ -90,7 +90,7 @@
                     <div class="uk-margin">
                         <label class="uk-form-label" for="email">Email</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" id="email" type="email" placeholder="email@email.com">
+                            <input class="uk-input" id="email" name="email" type="email" placeholder="email@email.com" data-validation="required email">
                         </div>
                     </div>
 
@@ -98,21 +98,24 @@
                         <div>
                             <label class="uk-form-label" for="username">Nome de usuário</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="username" type="text" placeholder="XXXXXXX">
+                                <input class="uk-input" id="username" name="username" type="text" placeholder="XXXXXXX"
+                                    data-validation="length alphanumeric" data-validation-length="3-12" 
+                                    data-validation-error-msg="Nome de usuário deve ser um valor alfanumericos, de tamanho 3-12 caracteres">
                             </div>
                         </div>
 
                         <div>
-                            <label class="uk-form-label" for="password">Senha</label>
+                            <label class="uk-form-label" for="password_confirmation">Senha</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="password" type="password" placeholder="********">
+                                <input class="uk-input" id="password_confirmation" name="password_confirmation" 
+                                    type="password" placeholder="********" data-validation="strength" data-validation-strength="2">
                             </div>
                         </div>
 
                         <div>
-                            <label class="uk-form-label" for="repassword">Confirme a senha</label>
+                            <label class="uk-form-label" for="password">Confirme a senha</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="repassword" type="password" placeholder="********">
+                                <input class="uk-input" id="password" name="password" type="password" placeholder="********" data-validation="confirmation">
                             </div>
                         </div>
 
@@ -142,7 +145,7 @@
                     <div class="uk-margin">
                         <label class="uk-form-label" for="email">Email</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" id="emailRecover" type="email" placeholder="email@email.com">
+                            <input class="uk-input" id="emailRecover" name="emailRecover" type="email" placeholder="email@email.com" data-validation="required email">
                         </div>
                     </div>
 
