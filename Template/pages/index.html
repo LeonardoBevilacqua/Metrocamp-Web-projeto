@@ -1,45 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-    <title>[TITULO DA PAGINA]</title>
+    <title>Choose Your Game</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/stylesheets/uikit.min.css" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <script src="/scripts/uikit.min.js"></script>
-    <script src="/scripts/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="../stylesheets/uikit.min.css" />
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+    <script src="../scripts/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
     <div id="main" class="uk-background-cover">
-        <div class="uk-container uk-container-expand uk-flex uk-text-center main-container uk-flex-wrap">
+        <div class="uk-container uk-container-expand uk-flex uk-flex-wrap uk-text-center main-container">
             <div class="uk-margin-auto uk-flex-row uk-width-3-4 uk-light">
-                <h1 class="uk-heading-line uk-text-center">
-                    <span>Bem vindo ao, [NOME DO SITE]</span>
+                <h1 class="uk-heading-line uk-text-center chasing-rabbits">
+                    <span>Choose Your Game</span>
                 </h1>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda sit, inventore temporibus aliquid reprehenderit est obcaecati
-                    provident deleniti libero quisquam at maiores, corporis officiis fugiat, rerum iure quaerat enim tempore?
-                </p>
             </div>
 
-            <div class="uk-margin-auto uk-margin-auto-vertical uk-flex-row uk-width-1-3@s">
+            <div class="uk-margin-auto uk-flex-row uk-width-1-1@s uk-width-1-2@m uk-width-1-3@l">
                 <div class="uk-card uk-card-default uk-card-body login-panel">
-                    <h3 class="uk-heading-line uk-text-center">
+                    <h3 class="uk-heading-line uk-text-center coolvetica-rg">
                         <span>Conectar em sua conta</span>
                     </h3>
-                    <form action="" id="signin">
+
+                    <form action="signin" id="signin" class="uk-text-left">
                         <div class="uk-margin">
-                            <input class="uk-input" type="text" placeholder="Username">
+                            <input class="uk-input" type="text" placeholder="Username" data-validation="required">
                         </div>
 
                         <div class="uk-margin">
-                            <input class="uk-input" type="password" placeholder="Senha">
+                            <input class="uk-input" type="password" placeholder="Senha" data-validation="required">
                         </div>
 
-                        <div class="uk-margin-auto-left uk-text-left">
+                        <div class="uk-margin">
                             <a href="#modal-password" uk-toggle>Esqueceu sua senha?</a>
                         </div>
 
@@ -48,14 +43,14 @@
                         </div>
                     </form>
 
-                    <p class="uk-margin-large-top">É novo por aqui viajante?
+                    <p class="uk-margin-medium-top">É novo por aqui viajante?
                         <a href="#modal-account" uk-toggle>Crie sua conta aqui</a>
                     </p>
 
                 </div>
 
                 <div class="uk-margin-top">
-                    <p class="uk-text-meta uk-light">&copy;COPYRIGHT 2018 - LEONARDO A. BEVILACQUA, TODOS OS DIREITOS RESERVADOS.</p>
+                    <p class="uk-text-meta uk-light coolvetica-rg">&copy; COPYRIGHT 2018 - LEONARDO A. BEVILACQUA, TODOS OS DIREITOS RESERVADOS.</p>
                 </div>
 
             </div>
@@ -66,22 +61,22 @@
 
     <div id="modal-account" class="uk-modal-container" uk-modal>
         <div class="uk-modal-dialog">
-            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <button class="uk-modal-close-default" type="bdangerutton" uk-close></button>
             <div class="uk-modal-header">
-                <h2 class="uk-modal-title uk-text-lead">Crie sua conta</h2>
+                <h2 class="uk-modal-title uk-text-lead coolvetica-rg">Crie sua conta</h2>
             </div>
             <div class="uk-modal-body">
-                <form action="" method="post" id="signup" class="uk-form-stacked uk-margin-large">
+                <form action="signup" method="post" id="signup" class="uk-form-stacked uk-margin-large">
 
-                    <div class="uk-flex">
-                        <div class="uk-margin uk-width-1-2">
+                    <div class="uk-child-width-expand@m uk-grid" uk-grid>
+                        <div>
                             <label class="uk-form-label" for="name">Nome</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="name" type="text" placeholder="Roberto">
                             </div>
                         </div>
 
-                        <div class="uk-margin uk-margin-remove-top uk-margin-left uk-width-1-2">
+                        <div>
                             <label class="uk-form-label" for="lastname">Sobrenome</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="lastname" type="text" placeholder="Silva">
@@ -90,29 +85,29 @@
 
                     </div>
 
-                    <div class="uk-margin uk-margin-remove-top">
+                    <div class="uk-margin">
                         <label class="uk-form-label" for="email">Email</label>
                         <div class="uk-form-controls">
                             <input class="uk-input" id="email" type="email" placeholder="email@email.com">
                         </div>
                     </div>
 
-                    <div class="uk-flex">
-                        <div class="uk-margin uk-width-1-2">
+                    <div class="uk-child-width-expand@s uk-grid" uk-grid>
+                        <div>
                             <label class="uk-form-label" for="username">Nome de usuário</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="username" type="text" placeholder="XXXXXXX">
                             </div>
                         </div>
 
-                        <div class="uk-margin uk-margin-remove-top uk-margin-left uk-width-1-2">
+                        <div>
                             <label class="uk-form-label" for="password">Senha</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="password" type="password" placeholder="********">
                             </div>
                         </div>
 
-                        <div class="uk-margin uk-margin-remove-top uk-margin-left uk-width-1-2">
+                        <div>
                             <label class="uk-form-label" for="repassword">Confirme a senha</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="repassword" type="password" placeholder="********">
@@ -137,15 +132,15 @@
         <div class="uk-modal-dialog">
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <div class="uk-modal-header">
-                <h2 class="uk-modal-title uk-text-lead">Recupere sua senha</h2>
+                <h2 class="uk-modal-title uk-text-lead coolvetica-rg">Recupere sua senha</h2>
             </div>
             <div class="uk-modal-body">
-                <form action="" method="post" id="signup" class="uk-form-stacked uk-margin-large">
+                <form action="passwordRecover" method="post" id="passwordRecover" class="uk-form-stacked uk-margin-large">
 
                     <div class="uk-margin">
                         <label class="uk-form-label" for="email">Email</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" id="email" type="email" placeholder="email@email.com">
+                            <input class="uk-input" id="emailRecover" type="email" placeholder="email@email.com">
                         </div>
                     </div>
 
@@ -160,6 +155,10 @@
 
     <!-- end password recover modal -->
 
+    <script src="../scripts/uikit.min.js"></script>
+    <script src="../scripts/uikit-icons.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script src="../scripts/script.js"></script>
 </body>
 
 </html>

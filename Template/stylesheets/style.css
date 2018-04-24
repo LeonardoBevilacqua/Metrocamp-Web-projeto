@@ -2,7 +2,7 @@
     min-height: 100vh;
     height: 100%;
     background-color: #333;
-    background-image: url("/assets/Triangle Abstract Black Background Vector.svg");
+    background-image: url("../assets/Triangle Abstract Black Background Vector.svg");
 }
 
 .main-container{
@@ -14,6 +14,44 @@
     border-radius: 4px;
 }
 
-.login-panel p{
+.login-panel > p{
     color: #333;
+}
+
+/* FONTS */
+@font-face{
+    font-family: 'coolvetica-rg';
+    src: url("../fonts/coolvetica rg.ttf");
+}
+
+@font-face{
+    font-family: 'techno-hideo';
+    src: url("../fonts/techno_hideo.ttf");    
+}
+
+@font-face{
+    font-family: 'techno-hideo-bold';
+    src: url("../fonts/techno_hideo_bold.ttf");
+}
+
+@font-face{
+    font-family: 'chasing-rabbits';
+    src: url("../fonts/Chasing Rabbits.otf");
+}
+
+.techno-hideo{
+    font-family: 'techno-hideo';
+    font-weight: initial;
+}
+
+.techno-hideo-bold{
+    font-family: 'techno-hideo-bold';
+}
+
+.chasing-rabbits{
+    font-family: 'chasing-rabbits';
+}
+
+.coolvetica-rg{
+    font-family: 'coolvetica-rg';
 }
