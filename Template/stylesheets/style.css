@@ -7,7 +7,7 @@
 }
 
 .main-container{
-    height: inherit;
+    min-height: inherit;
 }
 
 .login-panel{
