@@ -1,3 +1,4 @@
+/* Login */
 #main{
     min-height: 100vh;
     height: 100%;
@@ -17,7 +18,22 @@
 .login-panel > p{
     color: #333;
 }
-<<<<<<< HEAD
+/* End Login */
+
+/* Profile */
+
+
+.profile-userId > img{
+    width: 175px;
+    border-radius: 4px; 
+    border: 5px solid #ddd;
+    box-shadow: 3px 3px 6px rgba(50, 50, 50, 0.3);
+}
+.profile-userId > div{
+    padding: 8px 20px;    
+}
+
+/* End Profile */
 
 /* FONTS */
 @font-face{
@@ -56,5 +72,3 @@
 .coolvetica-rg{
     font-family: 'coolvetica-rg';
 }
-=======
->>>>>>> 568147df0ebfa04228884e515d88e36cde32fda1
