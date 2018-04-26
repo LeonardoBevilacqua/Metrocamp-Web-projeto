@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div id="main" class="uk-background-cover">
-        <div class="uk-container uk-container-expand uk-flex uk-flex-wrap uk-text-center main-container">
+    <main id="main" class="uk-background-cover login-main">
+        <div class="uk-container uk-container-expand uk-flex uk-flex-wrap uk-text-center login-container">
             <div class="uk-margin-auto uk-flex-row uk-width-3-4 uk-light">
                 <h1 class="uk-heading-line uk-text-center chasing-rabbits">
                     <span>Choose Your Game</span>
@@ -55,7 +55,7 @@
 
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- create account modal-->
 
@@ -72,14 +72,14 @@
                         <div>
                             <label class="uk-form-label" for="name">Nome</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="name" name="name" type="text" placeholder="Roberto">
+                                <input class="uk-input" id="name" name="name" type="text" placeholder="Roberto" data-validation="required">
                             </div>
                         </div>
 
                         <div>
                             <label class="uk-form-label" for="lastname">Sobrenome</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="lastname" name="lastname" type="text" placeholder="Silva">
+                                <input class="uk-input" id="lastname" name="lastname" type="text" placeholder="Silva" data-validation="required">
                             </div>
                         </div>
 
@@ -97,7 +97,7 @@
                             <label class="uk-form-label" for="username">Nome de usuário</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="username" name="username" type="text" placeholder="XXXXXXX"
-                                    data-validation="length alphanumeric" data-validation-length="3-12" 
+                                    data-validation="required length alphanumeric" data-validation-length="3-12" 
                                     data-validation-error-msg="Nome de usuário deve ser um valor alfanumericos, de tamanho 3-12 caracteres">
                             </div>
                         </div>
@@ -106,14 +106,14 @@
                             <label class="uk-form-label" for="password_confirmation">Senha</label>
                             <div class="uk-form-controls">
                                 <input class="uk-input" id="password_confirmation" name="password_confirmation" 
-                                    type="password" placeholder="********" data-validation="strength" data-validation-strength="2">
+                                    type="password" placeholder="********" data-validation="required strength" data-validation-strength="2">
                             </div>
                         </div>
 
                         <div>
                             <label class="uk-form-label" for="password">Confirme a senha</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="password" name="password" type="password" placeholder="********" data-validation="confirmation">
+                                <input class="uk-input" id="password" name="password" type="password" placeholder="********" data-validation="required confirmation">
                             </div>
                         </div>
 
