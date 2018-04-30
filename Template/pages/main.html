@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Perfil - CYG</title>
+    <link rel="stylesheet" href="../stylesheets/uikit.min.css" />
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+    <script src="../scripts/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <!-- NAV -->
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+        <nav class="uk-navbar-container nav-responsive" uk-navbar>
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
+                    <li class="nav-responsive-toggle">
+                        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#" uk-toggle="target: #offcanvas-push"></a>
+                    </li>
+                    <li class="uk-parent">
+                        <a href="#">
+                            <span uk-icon="home"></span> Inicio</a>
+                    </li>
+                    <li class="uk-active">
+                        <a href="#">
+                            <span uk-icon="user"></span> Meu perfil</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-parent" id="search">
+                        <div class="uk-margin">
+                            <div class="uk-inline">
+                                <span class="uk-form-icon" uk-icon="icon:  search"></span>
+                                <input class="uk-input uk-form-blank" type="text">
+                            </div>
+                        </div>
+                    </li>
+                    <li class="uk-parent">
+                        <a href="#">
+                            <span uk-icon="cog"></span> Configurações</a>
+                    </li>
+                    <li class="uk-parent">
+                        <a href="#">
+                            <span uk-icon="sign-out"></span> Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="offcanvas-push" uk-offcanvas="mode: slide; overlay: true">
+        <div class="uk-offcanvas-bar uk-width-1-1">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <div class="uk-width-1-2@s uk-width-2-5@m">
+                <ul class="uk-nav uk-nav-default">
+                    <li>
+                        <a href="#">
+                            <span uk-icon="home"></span> Inicio</a>
+                    </li>
+                    <li class="uk-active">
+                        <a href="#">
+                            <span uk-icon="user"></span> Meu perfil</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span uk-icon="cog"></span> Configurações</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span uk-icon="sign-out"></span> Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END NAV -->
+    <div id="main" class="uk-background-cover uk-background-muted">
+        <div class="uk-grid uk-padding" uk-grid>
+            <div class="uk-width-1-3@m">
+                <!-- card -->
+                <div class="uk-card uk-card-hover uk-card-default uk-card-secondary uk-padding-remove uk-margin uk-margin-remove-top profiles-card">
+                    <div class="uk-card-header uk-background-cover uk-background-blend-multiply uk-background-primary uk-light" style="background-image: url('https://www.hdwallpapers.in/walls/bicycle-wide.jpg')">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <a href="profile.html">
+                                    <img width="40" height="40" src="https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200">
+                                </a>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h2 class="uk-h4 uk-margin-remove-bottom">
+                                    <a href="profile.html">Perfil 1</a>
+                                </h2>
+                                <p class="uk-margin-remove-top">
+                                    <a href="blog.html">Blogs:</a> 25</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <div class="uk-grid uk-child-width-1-1@s uk-child-width-1-2@m uk-text-center" uk-grid>
+                            <p class="" id="following-count">
+                                <a href="profiles.html">Seguindo</a>
+                                <br>37</p>
+                            <p class="" id="followers-count">
+                                <a href="profiles.html">Seguidores</a>
+                                <br>21</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div>
+
+            <div class="uk-width-2-3@m">
+                <article class="uk-article">
+                    <h1 class="uk-article-title">
+                        <a class="uk-link-reset coolvetica-rg" href="blog.html">Titulo 1</a>
+                    </h1>
+                    <p class="uk-article-meta">Criado por
+                        <a href="#" class="uk-text-primary">Super User</a>, 26 de Abril de 2018.
+                        <br/> Tags:
+                        <a href="#">Blog</a>
+                    </p>
+                    <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.</p>
+                    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+                        <div>
+                            <a class="uk-button uk-button-text" href="blog.html">Leia mais</a>
+                        </div>
+                        <div>
+                            <a class="uk-button uk-button-text" href="blog.html#comments">5 Comentários</a>
+                        </div>
+                    </div>
+                </article>
+                <hr class="uk-divider-icon">
+                <article class="uk-article">
+                    <h1 class="uk-article-title">
+                        <a class="uk-link-reset coolvetica-rg" href="blog.html">Titulo 2</a>
+                    </h1>
+                    <p class="uk-article-meta">Criado por
+                        <a href="#" class="uk-text-primary">Super User</a>, 26 de Abril de 2018.
+                        <br/> Tags:
+                        <a href="#">Blog</a>
+                    </p>
+                    <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                        eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.</p>
+                    <div class="uk-grid-small uk-child-width-auto" uk-grid>
+                        <div>
+                            <a class="uk-button uk-button-text" href="blog.html">Leia mais</a>
+                        </div>
+                        <div>
+                            <a class="uk-button uk-button-text" href="blog.html#comments">5 Comentários</a>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="uk-text-center uk-padding uk-margin-auto">
+                    <a class="uk-button uk-button-text uk-text-primary" href="#">Carregar mais
+                        <span uk-icon="plus"></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="../scripts/uikit.min.js"></script>
+    <script src="../scripts/uikit-icons.min.js"></script>
+</body>
+
+</html>
