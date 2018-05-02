@@ -122,7 +122,14 @@
                     </div>
 
                     <div>
-                        <label class="uk-form-label" for="password_confirmation">Senha</label>
+                        <label class="uk-form-label" for="password_old">Senha atual</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="password_old" name="password_old" type="password" placeholder="********" data-validation="required">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="uk-form-label" for="password_confirmation">Nova Senha</label>
                         <div class="uk-form-controls">
                             <input class="uk-input" id="password_confirmation" name="password_confirmation" type="password" placeholder="********" data-validation="required strength"
                                 data-validation-strength="2">
@@ -148,6 +155,8 @@
     </div>
     <script src="../scripts/uikit.min.js"></script>
     <script src="../scripts/uikit-icons.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script src="../scripts/script.js"></script>
     <script>
         $("#deleteAccount").click(function () {
             //UIkit.modal.confirm('Are you sure', { labels: { ok: 'Yeah', cancel: 'Nope' } });
