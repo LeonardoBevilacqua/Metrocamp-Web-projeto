@@ -5,9 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Buscar - CYG</title>
+    <title>Criar Blog - CYG</title>
     <link rel="stylesheet" href="../stylesheets/uikit.min.css" />
     <link rel="stylesheet" href="../stylesheets/style.css" />
+    <!-- Include external CSS. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/css/froala_style.min.css" rel="stylesheet" type="text/css"
+    />
     <script src="../scripts/jquery-3.3.1.min.js"></script>
 </head>
 
@@ -80,72 +89,57 @@
     <!-- END NAV -->
     <div id="main" class="uk-background-cover uk-background-muted">
         <div class="uk-container uk-padding">
-            <h1 class="uk-heading-line coolvetica-rg">
-                <span>Procurar</span>
-            </h1>
-            <h2>
-                <b>Voce esta buscando por: </b>conteudo,da,busca</h2>
-
-            <hr>
-            <h2>Resultado:</h2>
-            <ul class="uk-list uk-list-divider">
-                <li>
-                    <div class="uk-text-large">
-                        <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 1</a> -
-                        <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </li>
-                <li>
-                    <div class="uk-text-large">
-                        <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 2</a> -
-                        <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </li>
-                <li>
-                    <div class="uk-text-large">
-                        <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 3</a> -
-                        <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </li>
-            </ul>
-
-            <ul class="uk-pagination uk-flex-center" data-uk-margin>
-                <li>
-                    <a href="#">
-                        <span data-uk-pagination-previous></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li class="uk-disabled">
-                    <span>...</span>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">6</a>
-                </li>
-                <li class="uk-active">
-                    <span>7</span>
-                </li>
-                <li>
-                    <a href="#">8</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span data-uk-pagination-next></span>
-                    </a>
-                </li>
-            </ul>
+            <!-- Create a tag that we will use as the editable area. -->
+            <!-- You can use a div tag as well. -->
+            <form action="#" method="post" class="uk-form-stacked">
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="title">Título</label>
+                    <input type="text" class="uk-input" id="title" name="title">
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="summary">Assunto do blog</label>
+                    <textarea class="uk-textarea" id="summary" name="summary"></textarea>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label" for="blogText">Blog</label>
+                    <textarea id="blogText" name="blogText"></textarea>
+                </div>
+            </form>
+            <button class="uk-button uk-button-primary" id="enviar" type="submit">enviar</button>            
         </div>
     </div>
     <script src="../scripts/uikit.min.js"></script>
     <script src="../scripts/uikit-icons.min.js"></script>
+
+    <!-- Include external JS libs. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+    <!-- Include Editor JS files. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script>
+
+    <!-- Initialize the editor. -->
+    <script src="../scripts/pt_br.js"></script>
+    <script> 
+        $(
+            function () {
+                $('#blogText').froalaEditor(
+                    {
+                        language: 'pt_br',
+                        placeholderText: 'Crie seu blog aqui!',
+                        fileUpload: false,
+                        toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertVideo', 'embedly', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
+                    }
+                )
+            });
+
+        $("#enviar").click(function () {
+            var html = $('#blogText').froalaEditor('html.get');
+            $(".fr-view").html(html);
+            alert(html);
+        });
+    </script>
 </body>
 
 </html>

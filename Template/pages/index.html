@@ -35,16 +35,17 @@
                         </div>
 
                         <div class="uk-margin">
-                            <a href="#modal-password" uk-toggle>Esqueceu sua senha?</a>
+                            <a href="#modal-password" data-uk-toggle>Esqueceu sua senha?</a>
                         </div>
 
                         <div class="uk-margin">
-                            <button class="uk-button uk-button-primary uk-width-1-1">Entrar</button>
+                            <!-- <button class="uk-button uk-button-primary uk-width-1-1">Entrar</button> -->
+                            <a href="main.html" class="uk-button uk-button-primary uk-width-1-1">Entrar</a>
                         </div>
                     </form>
 
                     <p class="uk-margin-medium-top">É novo por aqui viajante?
-                        <a href="#modal-account" uk-toggle>Crie sua conta aqui</a>
+                        <a href="#modal-account" data-uk-toggle>Crie sua conta aqui</a>
                     </p>
 
                 </div>
@@ -59,16 +60,16 @@
 
     <!-- create account modal-->
 
-    <div id="modal-account" class="uk-modal-container" uk-modal>
+    <div id="modal-account" class="uk-modal-container" data-uk-modal>
         <div class="uk-modal-dialog">
-            <button class="uk-modal-close-default" type="bdangerutton" uk-close></button>
+            <button class="uk-modal-close-default" type="button" data-uk-close></button>
             <div class="uk-modal-header">
                 <h2 class="uk-modal-title uk-text-lead coolvetica-rg">Crie sua conta</h2>
             </div>
             <div class="uk-modal-body">
                 <form action="signup" method="post" id="signup" class="uk-form-stacked uk-margin-large">
 
-                    <div class="uk-child-width-expand@m uk-grid" uk-grid>
+                    <div class="uk-child-width-expand@m uk-grid" data-uk-grid>
                         <div>
                             <label class="uk-form-label" for="name">Nome</label>
                             <div class="uk-form-controls">
@@ -92,7 +93,7 @@
                         </div>
                     </div>
 
-                    <div class="uk-child-width-expand@s uk-grid" uk-grid>
+                    <div class="uk-child-width-expand@s uk-grid" data-uk-grid>
                         <div>
                             <label class="uk-form-label" for="username">Nome de usuário</label>
                             <div class="uk-form-controls">
@@ -131,9 +132,9 @@
 
     <!-- password recover modal -->
 
-    <div id="modal-password" class="uk-modal-container" uk-modal>
+    <div id="modal-password" class="uk-modal-container" data-uk-modal>
         <div class="uk-modal-dialog">
-            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <button class="uk-modal-close-default" type="button" data-uk-close></button>
             <div class="uk-modal-header">
                 <h2 class="uk-modal-title uk-text-lead coolvetica-rg">Recupere sua senha</h2>
             </div>
@@ -151,7 +152,8 @@
             </div>
             <div class="uk-modal-footer uk-text-left uk-flex">
                 <button class="uk-button uk-button-default uk-modal-close uk-width-1-2@m" type="button">Cancelar</button>
-                <button class="uk-button uk-button-primary uk-width-1-2@m" type="button">Enviar</button>
+                <!-- <button class="uk-button uk-button-primary uk-width-1-2@m" type="button">Enviar</button> -->
+                <a href="resetPassword.html" class="uk-button uk-button-primary uk-width-1-2@m" type="button">Enviar</a>
             </div>
         </div>
     </div>
