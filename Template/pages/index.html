@@ -24,8 +24,8 @@
                     <h3 class="uk-heading-line uk-text-center coolvetica-rg">
                         <span>Conectar em sua conta</span>
                     </h3>
-
-                    <form action="signin" id="signin" class="uk-text-left">
+                        <!-- cyg.com/users/signin -->
+                    <form action="users/signin" id="signin" class="uk-text-left">
                         <div class="uk-margin">
                             <input class="uk-input" id="loginUsername" name="loginUsername" type="text" placeholder="Username" data-validation="required">
                         </div>
@@ -67,37 +67,38 @@
                 <h2 class="uk-modal-title uk-text-lead coolvetica-rg">Crie sua conta</h2>
             </div>
             <div class="uk-modal-body">
-                <form action="signup" method="post" id="signup" class="uk-form-stacked uk-margin-large">
+                <!-- cyw.com/users/signup -->
+                <form action="/users/signup" method="post" id="signup" class="uk-form-stacked uk-margin-large">
 
                     <div class="uk-child-width-expand@m uk-grid" data-uk-grid>
                         <div>
-                            <label class="uk-form-label" for="name">Nome</label>
+                            <label class="uk-form-label" for="Name">Nome</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="name" name="name" type="text" placeholder="Roberto" data-validation="required">
+                                <input class="uk-input" id="Name" name="Name" type="text" placeholder="Roberto" data-validation="required">
                             </div>
                         </div>
 
                         <div>
-                            <label class="uk-form-label" for="lastname">Sobrenome</label>
+                            <label class="uk-form-label" for="Lastname">Sobrenome</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="lastname" name="lastname" type="text" placeholder="Silva" data-validation="required">
+                                <input class="uk-input" id="Lastname" name="Lastname" type="text" placeholder="Silva" data-validation="required">
                             </div>
                         </div>
 
                     </div>
 
                     <div class="uk-margin">
-                        <label class="uk-form-label" for="email">Email</label>
+                        <label class="uk-form-label" for="EMail">Email</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" id="email" name="email" type="email" placeholder="email@email.com" data-validation="required email">
+                            <input class="uk-input" id="EMail" name="EMail" type="email" placeholder="Email@email.com" data-validation="required email">
                         </div>
                     </div>
 
                     <div class="uk-child-width-expand@s uk-grid" data-uk-grid>
                         <div>
-                            <label class="uk-form-label" for="username">Nome de usuário</label>
+                            <label class="uk-form-label" for="Username">Nome de usuário</label>
                             <div class="uk-form-controls">
-                                <input class="uk-input" id="username" name="username" type="text" placeholder="XXXXXXX"
+                                <input class="uk-input" id="Username" name="Username" type="text" placeholder="XXXXXXX"
                                     data-validation="required length alphanumeric" data-validation-length="3-12" 
                                     data-validation-error-msg="Nome de usuário deve ser um valor alfanumericos, de tamanho 3-12 caracteres">
                             </div>
@@ -139,7 +140,8 @@
                 <h2 class="uk-modal-title uk-text-lead coolvetica-rg">Recupere sua senha</h2>
             </div>
             <div class="uk-modal-body">
-                <form action="passwordRecover" method="post" id="passwordRecover" class="uk-form-stacked uk-margin-large">
+                <!-- cyg.com/users/passwordRecover -->
+                <form action="users/passwordRecover" method="post" id="passwordRecover" class="uk-form-stacked uk-margin-large">
 
                     <div class="uk-margin">
                         <label class="uk-form-label" for="email">Email</label>

@@ -83,18 +83,19 @@
         <div class="uk-container uk-padding">
             <!-- Create a tag that we will use as the editable area. -->
             <!-- You can use a div tag as well. -->
-            <form action="#" method="post" class="uk-form-stacked">
+            <!-- cyg.com/blogs/create POST -->
+            <form action="create" method="post" class="uk-form-stacked">
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="title">Título</label>
-                    <input type="text" class="uk-input" id="title" name="title">
+                    <label class="uk-form-label" for="Title">Título</label>
+                    <input type="text" class="uk-input" id="Title" name="Title">
                 </div>
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="summary">Assunto do blog</label>
-                    <textarea class="uk-textarea" id="summary" name="summary"></textarea>
+                    <label class="uk-form-label" for="Description">Assunto do blog</label>
+                    <textarea class="uk-textarea" id="Description" name="Description"></textarea>
                 </div>
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="blogText">Blog</label>
-                    <textarea id="blogText" name="blogText"></textarea>
+                    <label class="uk-form-label" for="Blog">Blog</label>
+                    <textarea id="Blog" name="Blog"></textarea>
                 </div>
             </form>
             <button class="uk-button uk-button-primary" id="enviar" type="submit">enviar</button>
