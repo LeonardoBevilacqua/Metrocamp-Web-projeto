@@ -1,0 +1,141 @@
+#main{
+    min-height: 100vh;
+    height: 100%;    
+}
+
+textarea{
+    resize: none;
+}
+
+/* nav */
+nav.uk-navbar-container ul,
+nav.uk-navbar-container a{
+    height: 40px;
+}
+
+nav.nav-responsive li.nav-responsive-toggle{
+    display: none;
+}
+
+@media only screen and (max-width: 640px) {        
+    nav.nav-responsive li.nav-responsive-toggle{
+        display: initial;
+    }
+    
+    nav.nav-responsive li:not(.nav-responsive-toggle):not(#search){
+        display: none;
+    }
+}
+/* end nav */
+
+/* Login */
+.login-main{
+    background-color: #333;
+    background-image: url("/images/TriangleAbstractBlackBackgroundVector.svg");
+}
+
+.login-container{
+    min-height: inherit;
+}
+
+.login-panel{
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+}
+
+.login-panel > p{
+    color: #333;
+}
+/* End Login */
+
+/* Profile */
+.profile-userId{
+    text-align: left;
+}
+
+.profile-userId > img{
+    width: 175px;
+    box-shadow: 3px 3px 6px rgba(50, 50, 50, 0.8);
+    margin-left: 20px;
+}
+.profile-userId > div.profile-panel{
+    padding: 8px 20px;    
+    background-color: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    box-shadow: 0 1px 20px rgba(50, 50, 50, 0.8);
+}
+
+.profile-userId > div.profile-panel > p{
+    padding: 0;
+    margin: auto;
+}
+
+.profile-userId > div.profile-panel > .profile-panel-status{
+    text-align: center;
+}
+
+.profile-userId > div.profile-panel > button{
+    margin: auto;
+}    
+    
+@media only screen and (max-width: 640px) {
+    .profile-userId{
+        text-align: center;
+    }
+    
+    .profile-userId > img{
+        margin: 0px;
+        width: 120px;
+    }
+    
+    .profile-userId > div.profile-panel > button{
+        margin-top: 30px;
+    }    
+}
+
+/* End Profile */
+
+/* Profiles */
+.profiles-card{
+    margin: 10px 5px;
+    box-shadow: none;
+}
+/* End Profiles */
+
+/* FONTS */
+@font-face{
+    font-family: 'coolvetica-rg';
+    src: url("../fonts/coolvetica_rg.ttf");
+}
+
+@font-face{
+    font-family: 'techno-hideo';
+    src: url("../fonts/techno_hideo.ttf");    
+}
+
+@font-face{
+    font-family: 'techno-hideo-bold';
+    src: url("../fonts/techno_hideo_bold.ttf");
+}
+
+@font-face{
+    font-family: 'chasing-rabbits';
+    src: url("../fonts/Chasing_Rabbits.otf");
+}
+
+.techno-hideo{
+    font-family: 'techno-hideo';
+    font-weight: initial;
+}
+
+.techno-hideo-bold{
+    font-family: 'techno-hideo-bold';
+}
+
+.chasing-rabbits{
+    font-family: 'chasing-rabbits';
+}
+
+.coolvetica-rg{
+    font-family: 'coolvetica-rg';
+}

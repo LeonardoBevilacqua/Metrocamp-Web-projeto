@@ -6,7 +6,12 @@ namespace ChooseYourGame.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Hello there!", "text/html");
+            return View();
+        }
+        
+        public IActionResult Main()
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,83 @@
+<div class="uk-grid uk-padding" data-uk-grid>
+    <div class="uk-width-1-3@m">
+        <!-- card -->
+        <div class="uk-card uk-card-hover uk-card-default uk-card-secondary uk-padding-remove uk-margin uk-margin-remove-top profiles-card">
+            <div class="uk-card-header uk-background-cover uk-background-blend-multiply uk-background-primary uk-light" style="background-image: url('https://www.hdwallpapers.in/walls/bicycle-wide.jpg')">
+                <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+                    <div class="uk-width-auto">
+                        <!-- cyg.com/profiles -->
+                        <a asp-controller="Profiles">
+                            <img width="40" height="40" alt="user" src="https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200">
+                        </a>
+                    </div>
+                    <div class="uk-width-expand">
+                        <h2 class="uk-h4 uk-margin-remove-bottom">
+                            <!-- cyg.com/profiles -->
+                            <a asp-controller="Profiles">Perfil 1</a>
+                        </h2>
+                        <p class="uk-margin-remove-top">
+                            <!-- cyg.com/blogs/search/userid -->
+                            <a asp-controller="Blogs" asp-action="Search" asp-fragment="UserName">Blogs:</a> 25</p>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <div class="uk-grid uk-child-width-1-1@s uk-child-width-1-2@m uk-text-center" data-uk-grid>
+                    <p class="" id="following-count">
+                        <!-- cyg.com/profiles/following/id -->
+                        <a asp-controller="Proflies" asp-action="Following" asp-fragment="Id">Seguindo</a>
+                        <br>37</p>
+                    <p class="" id="followers-count">
+                        <!-- cyg.com/profiles/followers/id -->
+                        <a asp-controller="Proflies" asp-action="Followers" asp-fragment="Id">Seguidores</a>
+                        <br>21</p>
+                </div>
+            </div>
+            <!-- cyg.com/blogs/create -->
+            <a asp-controller="Blogs" asp-action="Create" class="uk-button uk-background-primary uk-width-1-1">Criar blog</a>
+        </div>
+        <!-- end card -->
+    </div>
+
+    <div class="uk-width-2-3@m">
+        
+        <article class="uk-article">
+            <h1 class="uk-article-title">
+                <!-- cyg.com/Blogs/view/id -->
+                <a asp-controller="Blogs" asp-action="View" asp-fragment="Id" class="uk-link-reset coolvetica-rg">Titulo 1</a>
+            </h1>
+            <p class="uk-article-meta">Criado por
+                <!-- cyg.com/profiles/view/id -->
+                <a asp-controller="Profiles" asp-action="View" asp-fragment="Id" class="uk-text-primary">Super User</a>, 26 de Abril de 2018.
+                <br/> Tags:
+                <!-- cyg.com/blogs/search/tag -->
+                <a asp-controller="Blogs" asp-action="Search" asp-fragment="Tag">Blog</a>
+            </p>
+            <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.</p>
+            <div class="uk-grid-small uk-child-width-auto" data-uk-grid>
+                <div>
+                    <!-- cyg.com/blogs/view/id -->
+                    <a asp-controller="Blogs" asp-action="View" asp-fragment="Id" class="uk-button uk-button-text">Leia mais</a>
+                </div>
+                <div>
+                    <!-- cyg.com/blogs/view/id#comments -->
+                    <a asp-controller="Blogs" asp-action="View" asp-fragment="comments" class="uk-button uk-button-text">5 Comentários</a>
+                </div>
+            </div>
+        </article>
+        <hr class="uk-divider-icon">
+        
+
+        <div class="uk-text-center uk-padding uk-margin-auto">
+            <a class="uk-button uk-button-text uk-text-primary" href="blog.html">Carregar mais
+                <span data-uk-icon="plus"></span>
+            </a>
+        </div>
+    </div>
+</div>

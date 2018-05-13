@@ -25,8 +25,8 @@ namespace ChooseYourGame
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ChooseYourGameContext>(options =>
-                //options.UseInMemoryDatabase("DefaultConnection")
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseInMemoryDatabase("DefaultConnection")
+                //options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
             services.AddMvc();
