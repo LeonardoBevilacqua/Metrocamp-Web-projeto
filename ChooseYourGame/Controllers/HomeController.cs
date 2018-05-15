@@ -3,6 +3,7 @@ using ChooseYourGame.Models;
 using ChooseYourGame.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace ChooseYourGame.Controllers
 {
@@ -17,7 +18,7 @@ namespace ChooseYourGame.Controllers
         public IActionResult Index()
         {
             return View();
-        }
+        }      
 
         public IActionResult Main()
         {
@@ -26,11 +27,11 @@ namespace ChooseYourGame.Controllers
             var followers = _contexto.Followers.Where(f => f.FollowingProfileUserId == profile.UserId);
 
             //var test =   following.Where(f => f.FollowingProfileUserId == 2).ToString();
-            var test = following.Select(f=> f.FollowingProfileUserId).Contains(2) == true;
+            var test = following.Select(f => f.FollowingProfileUserId).Contains(2) == true;
 
             var blogs = _contexto.Blogs
             .Where(b =>
-                following.Select(f=> f.FollowingProfileUserId).Contains(b.ProfileId) == true ||
+                following.Select(f => f.FollowingProfileUserId).Contains(b.ProfileId) == true ||
                 b.ProfileId == profile.UserId
                 )
             .Include(b => b.Profile)

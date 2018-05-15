@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,17 +9,12 @@ namespace ChooseYourGame.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]        
         public int Id { get; set; }
 
-        [Required]
-        [EmailAddress]
+        [Required, EmailAddress, MaxLength(255)]
         public string EMail { get; set; }
         
         [Required]
         public string Password { get; set; }
         
-        
-        [Required]
-        public int AccessId { get; set; }
-
-        public Access Access { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ChooseYourGame.Models
 {
-    public class Access
+    public class Role
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -13,6 +13,6 @@ namespace ChooseYourGame.Models
         [StringLength(100)]
         public string Description { get; set; }
 
-        public List<User> Users { get; set; }
+        public virtual ICollection<UserRole> UserRoles {get; set; }
     }
 }

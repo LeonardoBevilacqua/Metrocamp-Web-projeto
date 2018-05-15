@@ -8,7 +8,7 @@ namespace ChooseYourGame
         public ChooseYourGameContext(DbContextOptions<ChooseYourGameContext> options) : base(options) { }
 
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<Access> Accesses { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Commentary> Commentaries { get; set; }
         public DbSet<Profile> Profiles { get; set; }
@@ -21,7 +21,7 @@ namespace ChooseYourGame
 
             modelBuilder.Entity<Tag>().HasIndex(t => t.Description).IsUnique();
 
-            modelBuilder.Entity<Access>().HasIndex(a => a.Description).IsUnique();
+            modelBuilder.Entity<Role>().HasIndex(a => a.Description).IsUnique();
 
             modelBuilder.Entity<Profile>().HasIndex(p => p.Username).IsUnique();
 
