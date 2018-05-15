@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,9 +20,13 @@ namespace ChooseYourGame.Models
         [Required]
         public string BlogText { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public DateTime CreationTime { get; set; }
+
+        public int ProfileId { get; set; }
+        public Profile Profile { get; set; }
 
         public List<BlogTag> BlogTag { get; set; }
+
+        public List<Commentary> Commentaries { get; set; }
     }
 }

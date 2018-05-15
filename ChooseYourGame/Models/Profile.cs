@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -5,7 +6,7 @@ namespace ChooseYourGame.Models
 {
     public class Profile
     {
-        [Key]
+        [Key, ForeignKey(nameof(User))]
         public int UserId { get; set; }
 
         [Required]
@@ -24,6 +25,8 @@ namespace ChooseYourGame.Models
         public string Background { get; set; }
 
         public User User { get; set; }
+
+        public List<Blog> Blogs { get; set; }
 
     }
 }

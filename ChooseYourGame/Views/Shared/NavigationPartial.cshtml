@@ -7,14 +7,14 @@
                         <li class="nav-responsive-toggle">
                             <a class="uk-navbar-toggle" data-uk-navbar-toggle-icon href="#" data-uk-toggle="target: #offcanvas-push"></a>
                         </li>
-                        <li class="uk-active">
+                        <li class="@(ViewBag.title == "Inicio" ? "uk-active" : "uk-parent")">
                             <!-- cyg.com/home/main -->
                             <a asp-controller="Home" asp-action="Main">
                                 <span data-uk-icon="home"></span> Inicio</a>
                         </li>
-                        <li class="uk-parent">
+                        <li class="@(ViewBag.title == "Meu Perfil" ? "uk-active" : "uk-parent")">
                             <!-- cyg.com/Profiles -->
-                            <a asp-controller="Profiles">
+                            <a asp-controller="Profiles" asp-action="MeuPerfil">
                                 <span data-uk-icon="user"></span> Meu perfil</a>
                         </li>
                     </ul>
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="uk-parent">
+                        <li class="@(ViewBag.title == "Configurações" ? "uk-active" : "uk-parent")">
                             <!-- cyg.com/profiles/config -->
                             <a asp-controller="Profiles" asp-action="Config">
                                 <span data-uk-icon="cog"></span> Configurações</a>
@@ -48,17 +48,17 @@
                 <button class="uk-offcanvas-close" type="button" data-uk-close></button>
                 <div class="uk-width-1-2@s uk-width-2-5@m">
                     <ul class="uk-nav uk-nav-default">
-                        <li class="uk-active">
+                        <li class="@(ViewBag.title == "Inicio" ? "uk-active" : "")">
                             <!-- cyg.com/home/main -->
                             <a asp-controller="Home" asp-action="Main">
                                 <span data-uk-icon="home"></span> Inicio</a>
                         </li>
-                        <li>
+                        <li class="@(ViewBag.title == "Meu Perfil" ? "uk-active" : "")">
                             <!-- cyg.com/profiles -->
-                            <a asp-controller="Profiles">
+                            <a asp-controller="Profiles" asp-action="MeuPerfil">
                                 <span data-uk-icon="user"></span> Meu perfil</a>
                         </li>
-                        <li>
+                        <li class="@(ViewBag.title == "Configurações" ? "uk-active" : "")">
                             <!-- cyg.com/profiles/config -->
                             <a asp-controller="Profiles" asp-action="Config">
                                 <span data-uk-icon="cog"></span> Configurações</a>

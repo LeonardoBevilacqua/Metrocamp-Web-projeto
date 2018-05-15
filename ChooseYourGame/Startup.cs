@@ -25,8 +25,8 @@ namespace ChooseYourGame
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ChooseYourGameContext>(options =>
-                options.UseInMemoryDatabase("DefaultConnection")
-                //options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+                //options.UseInMemoryDatabase("DefaultConnection")
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
             services.AddMvc();
@@ -39,12 +39,57 @@ namespace ChooseYourGame
             {
                 app.UseDeveloperExceptionPage();
             }
-            // else pp.UseExceptionHandler("/Home/Error");
+            // else app.UseExceptionHandler("/Home/Error");
 
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ChooseYourGameContext>();
+                // alterar para migration
                 context.Database.EnsureCreated();
+
+                //Construct
+
+                if (!context.Accesses.Any())
+                {
+                    context.Accesses.Add(new Access
+                    {
+                        Description = "1"
+                    });
+                    context.SaveChanges();
+                }
+                if (!context.Users.Any())
+                {
+                    context.Users.Add(new User
+                    {
+                        AccessId = context.Accesses.First().Id,
+                        EMail = "1",
+                        Password = "1"
+                    });
+                    context.SaveChanges();
+                }
+                if (!context.Profiles.Any())
+                {
+                    context.Profiles.Add(new Profile
+                    {
+                        UserId = context.Users.First().Id,
+                        Lastname = "Bevilacqua",
+                        Name = "Leonardo",
+                        Username = "Leozinho580"
+                    });
+                    context.SaveChanges();
+                }
+                if (!context.Blogs.Any())
+                {
+                    context.Blogs.Add(new Blog
+                    {
+                        BlogText = "lorem",
+                        CreationTime = DateTime.Now,
+                        Description = "Texto",
+                        ProfileId = context.Profiles.First().UserId,
+                        Title = "Titulo teste"
+                    });
+                    context.SaveChanges();
+                }
             }
 
             app.UseStaticFiles();
