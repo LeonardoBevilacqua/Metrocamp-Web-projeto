@@ -1,17 +1,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace ChooseYourGame.Models
 {
     public class Profile
     {
-        [Key, ForeignKey(nameof(User))]
-        public int UserId { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Username { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         public string Picture { get; set; }
 
@@ -23,8 +20,10 @@ namespace ChooseYourGame.Models
         public string Lastname { get; set; }
 
         public string Background { get; set; }
-
-        public User User { get; set; }
+        
+        [Required]
+        public string UserId { get; set; }
+        public IdentityUser User { get; set; }
 
         public List<Blog> Blogs { get; set; }
 

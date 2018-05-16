@@ -1,0 +1,32 @@
+@model AccountViewModel
+@{ Layout = "_LayoutIndex"; }
+
+<h3 class="uk-heading-line uk-text-center coolvetica-rg">
+    <span>Conectar em sua conta</span>
+</h3>
+<!-- cyg.com/users/signin -->
+<form asp-action="LogIn" asp-controller="Home" id="signin" class="uk-text-left">
+    <div class="uk-margin">
+        <input class="uk-input" asp-for="Login.LoginAccount" placeholder="Username" data-validation="required">
+        <span asp-validation-for="Login.LoginAccount"></span>
+    </div>
+
+    <div class="uk-margin">
+        <input class="uk-input" asp-for="Login.LoginPassword" placeholder="Senha" data-validation="required">
+    </div>
+
+    <div class="uk-margin">
+        <a href="#modal-password" data-uk-toggle>Esqueceu sua senha?</a>
+    </div>
+
+    <div class="uk-margin">
+        <button class="uk-button uk-button-primary uk-width-1-1" type="submit">Entrar</button>
+    </div>
+</form>
+
+<p class="uk-margin-medium-top">É novo por aqui viajante?
+    <a href="#modal-account" data-uk-toggle>Crie sua conta aqui</a>
+</p>
+
+@section Modals{ @Html.Partial("SignUpPartial") @Html.Partial("PasswordRecoverPartial")
+}

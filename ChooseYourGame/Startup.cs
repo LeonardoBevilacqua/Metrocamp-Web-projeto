@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ChooseYourGame.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 
 namespace ChooseYourGame
 {
@@ -30,6 +31,10 @@ namespace ChooseYourGame
                 //options.UseInMemoryDatabase("DefaultConnection")
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
+            services.AddIdentity<IdentityUser, IdentityRole>()
+            .AddEntityFrameworkStores<ChooseYourGameContext>()
+            .AddDefaultTokenProviders();
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/LogIn");
 
         }
 
@@ -50,10 +55,11 @@ namespace ChooseYourGame
                     //Construct                   
                     if (!context.Users.Any())
                     {
-                        context.Users.Add(new User
+                        context.Users.Add(new IdentityUser
                         {
-                            EMail = "dev",
-                            Password = "1"
+                            Email = "dev",
+                            PasswordHash = "1",
+                            UserName = "Leozinho580",
                         });
                         context.SaveChanges();
                     }
@@ -63,8 +69,7 @@ namespace ChooseYourGame
                         {
                             UserId = context.Users.First().Id,
                             Lastname = "Bevilacqua",
-                            Name = "Leonardo",
-                            Username = "Leozinho580"
+                            Name = "Leonardo"
                         });
                         context.SaveChanges();
                     }
@@ -75,7 +80,7 @@ namespace ChooseYourGame
                             BlogText = "lorem",
                             CreationTime = DateTime.Now,
                             Description = "Texto",
-                            ProfileId = context.Profiles.First().UserId,
+                            ProfileId = context.Profiles.First().Id,
                             Title = "Titulo teste"
                         });
                         context.SaveChanges();
@@ -87,7 +92,7 @@ namespace ChooseYourGame
 
 
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

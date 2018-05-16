@@ -11,17 +11,17 @@
                     <div class="uk-width-auto">
                         <!-- cyg.com/profiles -->
                         <a asp-controller="Profiles" asp-action="MeuPerfil">
-                            <img width="40" height="40" alt="@Model.Profile.Username" src="@(Model.Profile.Picture != null ? Model.Profile.Picture : "https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200")">
+                            <img width="40" height="40" alt="@Model.Profile.User.UserName" src="@(Model.Profile.Picture != null ? Model.Profile.Picture : "https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200")">
                         </a>
                     </div>
                     <div class="uk-width-expand">
                         <h2 class="uk-h4 uk-margin-remove-bottom">
                             <!-- cyg.com/profiles -->
-                            <a asp-controller="Profiles" asp-action="MeuPerfil">@Model.Profile.Username</a>
+                            <a asp-controller="Profiles" asp-action="MeuPerfil">@Model.Profile.User.UserName</a>
                         </h2>
                         <p class="uk-margin-remove-top">
                             <!-- cyg.com/blogs/search/userid -->
-                            <a asp-controller="Blogs" asp-action="Search" asp-route-user="@Model.Profile.Username">Blogs:</a> @Model.BlogsCount</p>
+                            <a asp-controller="Blogs" asp-action="Search" asp-route-user="@Model.Profile.User.UserName">Blogs:</a> @Model.BlogsCount</p>
                     </div>
                 </div>
             </div>
@@ -29,11 +29,11 @@
                 <div class="uk-grid uk-child-width-1-1@s uk-child-width-1-2@m uk-text-center" data-uk-grid>
                     <p class="" id="following-count">
                         <!-- cyg.com/profiles/following/id -->
-                        <a asp-controller="Profiles" asp-action="Following" asp-route-id="@Model.Profile.Username">Seguindo</a>
+                        <a asp-controller="Profiles" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
                         <br>@Model.FollowingCount</p>
                     <p class="" id="followers-count">
                         <!-- cyg.com/profiles/followers/id -->
-                        <a asp-controller="Profiles" asp-action="Followers" asp-route-id="@Model.Profile.Username">Seguidores</a>
+                        <a asp-controller="Profiles" asp-action="Followers" asp-route-id="@Model.Profile.User.UserName">Seguidores</a>
                         <br>@Model.FollowersCount</p>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             </h1>
             <p class="uk-article-meta">Criado por
                 <!-- cyg.com/profiles/view/id -->
-                <a asp-controller="Profiles" asp-action="View" asp-route-id="@blog.Profile.Username" class="uk-text-primary">@blog.Profile.Username</a>
+                <a asp-controller="Profiles" asp-action="View" asp-route-id="@blog.Profile.User.UserName" class="uk-text-primary">@blog.Profile.User.UserName</a>
                 , @(blog.CreationTime.ToString("dd") + " de " + blog.CreationTime.ToString("MMMM") + " de " + blog.CreationTime.ToString("yyyy") + ", " + blog.CreationTime.ToString("H:mm")).
                 <br/> 
                 @if(blog.BlogTag.Count > 0)
