@@ -6,13 +6,13 @@
 </h3>
 <!-- cyg.com/users/signin -->
 <form asp-action="LogIn" asp-controller="Home" id="signin" class="uk-text-left">
+    <div asp-validation-summary="All"></div>
     <div class="uk-margin">
-        <input class="uk-input" asp-for="Login.LoginAccount" placeholder="Username" data-validation="required">
-        <span asp-validation-for="Login.LoginAccount"></span>
+        <input class="uk-input" name="LoginAccount" placeholder="Username" data-validation="required">
     </div>
 
     <div class="uk-margin">
-        <input class="uk-input" asp-for="Login.LoginPassword" placeholder="Senha" data-validation="required">
+        <input class="uk-input" name="LoginPassword" type="password" placeholder="Senha" data-validation="required">
     </div>
 
     <div class="uk-margin">

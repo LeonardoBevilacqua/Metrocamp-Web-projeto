@@ -10,13 +10,13 @@ namespace ChooseYourGame.Models
 
         [Required]
         [ForeignKey(nameof(Profile))]
-        public int FollowerProfileUserId { get; set; }
+        public int FollowerProfileId { get; set; }
 
         public Profile FollowerProfile { get; set; }
 
         [Required]
         [ForeignKey(nameof(Profile))]
-        public int FollowingProfileUserId { get; set; }
+        public int FollowingProfileId { get; set; }
 
         public Profile FollowingProfile { get; set; }
     }
