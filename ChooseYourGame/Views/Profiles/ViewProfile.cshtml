@@ -1,0 +1,62 @@
+@model MainViewModel 
+@{ViewBag.title = Model.Profile.User.UserName + " Perfil";}
+<header class="uk-container uk-container-expand uk-padding-remove">
+    <div class="uk-background-primary uk-background-cover uk-light uk-padding-large uk-padding-remove-bottom uk-padding-remove-right uk-padding-remove-left uk-panel" style="@(Model.Profile.Background != null ? " background-image: url('"+Model.Profile.Background+"') " : "background-image: none ")">
+        <div class="profile-userId">
+            <img src="@(Model.Profile.Picture != null ? Model.Profile.Picture : " https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200 ")" alt="@Model.Profile.User.UserName">
+            <div class="uk-grid uk-child-width-1-6@s uk-child-width-1-6@m profile-panel uk-margin-remove" data-uk-grid>
+                <p id="username">@Model.Profile.User.UserName</p>
+                <!-- cyg.com/blogs/search/userid -->
+                <p class="profile-panel-status" id="blogs-count"><a asp-controller="Blogs" asp-action="Search" asp-route-user="@Model.Profile.User.UserName">Blogs</a>
+                    <br>@Model.BlogsCount</p>
+                <!-- cyg.com/profiles/following/id -->
+                <p class="profile-panel-status" id="following-count"><a asp-controller="Profiles" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
+                    <br>@Model.FollowingCount</p>
+                <!-- cyg.com/profiles/followers/id -->
+                <p class="profile-panel-status" id="followers-count"><a asp-controller="Profiles" asp-action="Followers" asp-route-id="@Model.Profile.User.UserName">Seguidores</a>
+                    <br>@Model.FollowersCount</p>
+                <!-- cyg.com/profiles/follow/id -->
+                @if(@Model.IsFollowing){
+                    <a asp-action="Unfollow" asp-route-id="@Model.Profile.User.UserName" class="uk-button uk-button-danger profile-panel-status" id="follow">Deixar de Seguir</a>
+                }else{
+                    <a asp-action="Follow" asp-route-id="@Model.Profile.User.UserName" class="uk-button uk-button-primary profile-panel-status" id="follow">Seguir</a>
+                }
+            </div>
+        </div>
+    </div>
+</header>
+<main class="uk-container uk-container-expand">
+    @foreach (var blog in Model.Blogs) {
+    <article class="uk-article uk-padding">
+        <h1 class="uk-article-title">
+            <!-- cyg.com/Blogs/view/id -->
+            <a class="uk-link-reset coolvetica-rg" asp-controller="Blogs" asp-action="View" asp-route-id="@blog.Id">@blog.Title</a>
+        </h1>
+        <p class="uk-article-meta">Criado por
+            <!-- cyg.com/profiles/view/user -->
+            <a asp-controller="Profiles" asp-action="View" asp-route-id="@blog.Profile.User.UserName" class="uk-text-primary">@blog.Profile.User.UserName</a> , @(blog.CreationTime.ToString("dd") + " de " + blog.CreationTime.ToString("MMMM") + " de " + blog.CreationTime.ToString("yyyy") + ", " + blog.CreationTime.ToString("H:mm")).
+            <br/> Tags:
+            <!-- cyg.com/blogs/search/tag -->
+            @if(blog.BlogTag.Count > 0) { Html.Raw("Tags:"); }
+            <!-- cyg.com/blogs/search/tag -->
+            @foreach (var tag in blog.BlogTag) {
+            <a asp-controller="Blogs" asp-action="Search" asp-route-tag="@tag.Tag.Id">@tag.Tag.Description</a> }
+        </p>
+        <p class="uk-text-lead">@blog.Description</p>
+        <div class="uk-grid-small uk-child-width-auto" data-uk-grid>
+            <div>
+                <!-- cyg.com/Blogs/view/id -->
+                <a class="uk-button uk-button-text" asp-controller="Blogs" asp-action="View" asp-route-Id="@blog.Id">Leia mais</a>
+            </div>
+            <div>
+                <!-- cyg.com/Blogs/view/id#comments -->
+                <a class="uk-button uk-button-text" asp-controller="Blogs" asp-action="View" asp-route-Id="@blog.Id" asp-fragment="comments">@blog.Commentaries.Count @(blog.Commentaries.Count == 1 ? "Comentário": "Comentários")</a>
+            </div>
+        </div>
+    </article>
+    <hr class="uk-divider-icon"> }
+
+    <div class="uk-text-center uk-padding uk-margin-auto">
+        <a class="uk-button uk-button-text uk-text-primary" href="#">Carregar mais <span data-uk-icon="plus"></span></a>
+    </div>
+</main>

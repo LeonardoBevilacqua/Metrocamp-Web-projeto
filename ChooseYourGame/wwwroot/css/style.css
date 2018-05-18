@@ -74,7 +74,7 @@ nav.nav-responsive li.nav-responsive-toggle{
     text-align: center;
 }
 
-.profile-userId > div.profile-panel > button{
+.profile-userId > div.profile-panel > a{
     margin: auto;
 }    
     
@@ -88,7 +88,7 @@ nav.nav-responsive li.nav-responsive-toggle{
         width: 120px;
     }
     
-    .profile-userId > div.profile-panel > button{
+    .profile-userId > div.profile-panel > a{
         margin-top: 30px;
     }    
 }

@@ -25,7 +25,7 @@ namespace ChooseYourGame.Models
         public string UserId { get; set; }
         public IdentityUser User { get; set; }
 
-        public List<Blog> Blogs { get; set; }
+        public IEnumerable<Blog> Blogs { get; set; }
 
     }
 }

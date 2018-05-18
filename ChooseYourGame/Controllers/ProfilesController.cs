@@ -1,9 +1,9 @@
 using System.Linq;
+using ChooseYourGame.Models;
 using ChooseYourGame.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ChooseYourGame.Controllers
 {
@@ -21,30 +21,61 @@ namespace ChooseYourGame.Controllers
 
         public IActionResult MeuPerfil()
         {
-            var profile = _contexto.Profiles.
-            Include(p => p.Blogs).
-            Include(p => p.User).
-            Where(p => p.UserId == _userManager.GetUserId(HttpContext.User)).First();
-            var following = _contexto.Followers.Where(f => f.FollowerProfileId == profile.Id);
-            var followers = _contexto.Followers.Where(f => f.FollowingProfileId == profile.Id);
-            var blogs = _contexto.Blogs
-            .Where(b => b.ProfileId == profile.Id)
-            .Include(b => b.Profile).ThenInclude(p => p.User)
-            .Include(b => b.Commentaries)
-            .Include(b => b.BlogTag).ThenInclude(t => t.Tag)
-            .OrderByDescending(b => b.CreationTime);
-
-            var vm = new MainViewModel(
-                profile, profile.Blogs.Count,
-                following.Count(),
-                followers.Count(),
-                blogs);
+            string userId = _userManager.GetUserId(HttpContext.User);
+            MainViewModel vm = new MainViewModel(_contexto);
+            vm.LoadProfileInfo(userId, false);
 
             return View(vm);
         }
-        public IActionResult ViewProfile(string userName)
+        public IActionResult ViewProfile(string id)
         {
-            return View();
+            string userId = _contexto.Users
+            .Where(u => u.UserName == id)
+            .Select(u => u.Id).First();
+            MainViewModel vm = new MainViewModel(_contexto);
+            vm.LoadProfileInfo(userId, false);
+            vm.CheckFollowing(_userManager.GetUserId(HttpContext.User));
+
+            return View(vm);
+        }
+
+        public IActionResult Follow(string id)
+        {
+            string userId = _userManager.GetUserId(HttpContext.User);
+            string profileUserId = _contexto.Users.Where(u => u.UserName == id).Select(u => u.Id).First();
+
+            var follow = new Follower
+            {
+                FollowerProfileId = _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.Id).First(),
+                FollowingProfileId = _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.Id).First()
+            };
+
+            _contexto.Followers.Add(follow);
+            _contexto.SaveChanges();
+
+            return RedirectToAction("ViewProfile", new { id = id });
+        }
+        public IActionResult Unfollow(string id)
+        {
+            string userId = _userManager.GetUserId(HttpContext.User);
+            string profileUserId = _contexto.Users.Where(u => u.UserName == id).Select(u => u.Id).First();
+
+            var follow = new Follower
+            {
+                Id = _contexto.Followers
+            .Where(f =>
+                f.FollowerProfileId == _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.Id).First() &&
+                f.FollowingProfileId == _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.Id).First())
+            .Select(f => f.Id).First()
+            };
+
+            _contexto.Followers.Remove(follow);
+            _contexto.SaveChanges();
+
+            return RedirectToAction("ViewProfile", new
+            {
+                id = id
+            });
         }
     }
 }

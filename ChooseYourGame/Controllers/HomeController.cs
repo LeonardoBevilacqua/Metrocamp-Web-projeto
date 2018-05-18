@@ -1,11 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using ChooseYourGame.Models;
 using ChooseYourGame.Models.ViewModels;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ChooseYourGame.Controllers
 {
@@ -92,30 +90,11 @@ namespace ChooseYourGame.Controllers
         [Authorize]
         public IActionResult Main()
         {
-            var profile = _contexto.Profiles.
-            Include(p => p.Blogs).
-            Include(p => p.User).
-            Where(p => p.UserId == _userManager.GetUserId(HttpContext.User)).First();
-            var following = _contexto.Followers.Where(f => f.FollowerProfileId == profile.Id);
-            var followers = _contexto.Followers.Where(f => f.FollowingProfileId == profile.Id);
-            var blogs = _contexto.Blogs
-            .Where(b =>
-                following.Select(f => f.FollowingProfileId).Contains(b.ProfileId) == true ||
-                b.ProfileId == profile.Id
-                )
-            .Include(b => b.Profile).ThenInclude(p=>p.User)
-            .Include(b => b.Commentaries)
-            .Include(b => b.BlogTag).ThenInclude(t => t.Tag)
-            .OrderByDescending(b => b.CreationTime);
+            string userId = _userManager.GetUserId(HttpContext.User);
+            MainViewModel vm = new MainViewModel(_contexto);
+            vm.LoadProfileInfo(userId, true);
 
-            MainViewModel mainData = new MainViewModel(
-                profile,
-                profile.Blogs.Count,
-                following.Count(),
-                followers.Count(),
-                blogs);
-
-            return View(mainData);
+            return View(vm);
         }
 
         public async Task<IActionResult> LogOut(){

@@ -28,8 +28,8 @@ namespace ChooseYourGame
         {
             services.AddMvc();
             services.AddDbContext<ChooseYourGameContext>(options =>
-                options.UseInMemoryDatabase("DefaultConnection")
-                //options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+                //options.UseInMemoryDatabase("DefaultConnection")
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
             services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ChooseYourGameContext>()
@@ -49,8 +49,8 @@ namespace ChooseYourGame
                 {
                     var context = serviceScope.ServiceProvider.GetRequiredService<ChooseYourGameContext>();
                     // alterar para migration
-                    context.Database.EnsureCreated();
-                    //context.Database.Migrate();
+                    //context.Database.EnsureCreated();
+                    context.Database.Migrate();
 
                     //Construct                   
                     if (!context.Users.Any())
