@@ -56,12 +56,12 @@ namespace ChooseYourGame.Controllers
                 vm.ProfileUserId = _contexto.Profiles
                     .Where(p => p.UserId == _userManager.GetUserId(HttpContext.User))
                     .Select(p => p.UserId)
-                    .First();
+                    .FirstOrDefault();
                 _contexto.Add(vm);
             }
             _contexto.SaveChanges();
 
-            return RedirectToAction("MeuPerfil", "Profiles");
+            return RedirectToAction("ViewProfile", "Profiles", new { id = _userManager.GetUserName(HttpContext.User) });
 
         }
 
@@ -86,7 +86,7 @@ namespace ChooseYourGame.Controllers
             _contexto.Blogs.Remove(new Blog { Id = id });
             _contexto.SaveChanges();
 
-            return RedirectToAction("MeuPerfil", "Profiles");
+            return RedirectToAction("ViewProfile", "Profiles", new { id = _userManager.GetUserName(HttpContext.User) });
         }
     }
 }

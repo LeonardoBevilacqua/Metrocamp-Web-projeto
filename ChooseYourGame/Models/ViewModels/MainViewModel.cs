@@ -35,7 +35,7 @@ namespace ChooseYourGame.Models.ViewModels
             .Include(p => p.Blogs).ThenInclude(b => b.BlogTag).ThenInclude(t => t.Tag)
             .Include(p => p.User)
             .Where(p => p.UserId == userId)
-            .First();
+            .FirstOrDefault();
 
             this._Following = this._context.Followers
             .Where(f => f.FollowerProfileUserId == this.Profile.UserId)
@@ -70,11 +70,6 @@ namespace ChooseYourGame.Models.ViewModels
 
         public void CheckFollowing(string userId)
         {
-            // string ProfileId = this._context.Profiles
-            // .Where(p => p.UserId == userId)
-            // .Select(p => p.UserUserName)
-            // .First();
-
             this.IsFollowing = _Follower.Contains(userId);
         }
     }

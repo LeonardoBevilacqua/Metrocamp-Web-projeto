@@ -11,12 +11,8 @@
     <p class="uk-article-meta">
         Criado por
 
-        @if(Model.Profile.User.UserName != ViewBag.UserName){
-            <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@Model.Profile.User.UserName" class="uk-text-primary">@Model.Profile.User.UserName</a>
-        }else{
-            <a asp-controller="Profiles" asp-action="MeuPerfil" class="uk-text-primary">@ViewBag.UserName</a>
-        }
-
+        <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@Model.Profile.User.UserName" class="uk-text-primary">@Model.Profile.User.UserName</a>
+        
         , @(Model.CreationTime.ToString("dd") + " de " + Model.CreationTime.ToString("MMMM") + " de " + Model.CreationTime.ToString("yyyy") + ", " + Model.CreationTime.ToString("H:mm")).
         
         <br/> 

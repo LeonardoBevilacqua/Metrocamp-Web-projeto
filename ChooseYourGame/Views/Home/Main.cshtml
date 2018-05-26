@@ -10,14 +10,14 @@
                 <div class="uk-grid-small uk-flex-middle" data-uk-grid>
                     <div class="uk-width-auto">
                         <!-- cyg.com/profiles -->
-                        <a asp-controller="Profiles" asp-action="MeuPerfil">
+                        <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@Model.Profile.User.UserName">
                             <img width="40" height="40" alt="@Model.Profile.User.UserName" src="@(Model.Profile.Picture != null ? Model.Profile.Picture : "https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200")">
                         </a>
                     </div>
                     <div class="uk-width-expand">
                         <h2 class="uk-h4 uk-margin-remove-bottom">
                             <!-- cyg.com/profiles -->
-                            <a asp-controller="Profiles" asp-action="MeuPerfil">@Model.Profile.User.UserName</a>
+                            <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@Model.Profile.User.UserName">@Model.Profile.User.UserName</a>
                         </h2>
                         <p class="uk-margin-remove-top">
                             <a asp-controller="Search" asp-route-user="@Model.Profile.User.UserName">Blogs:</a> @Model.BlogsCount</p>
@@ -51,11 +51,7 @@
             </h1>
             <p class="uk-article-meta">Criado por
                 <!-- cyg.com/profiles/view/id -->
-                @if(blog.Profile.User.UserName != @Model.Profile.User.UserName){
-                    <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@blog.Profile.User.UserName" class="uk-text-primary">@blog.Profile.User.UserName</a>
-                }else{
-                    <a asp-controller="Profiles" asp-action="MeuPerfil" class="uk-text-primary">@blog.Profile.User.UserName</a>
-                }
+                <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@blog.Profile.User.UserName" class="uk-text-primary">@blog.Profile.User.UserName</a>
                 , @(blog.CreationTime.ToString("dd") + " de " + blog.CreationTime.ToString("MMMM") + " de " + blog.CreationTime.ToString("yyyy") + ", " + blog.CreationTime.ToString("H:mm")).
                 <br/> 
                 @if(blog.BlogTag.Count > 0)

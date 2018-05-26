@@ -14,7 +14,7 @@
                         </li>
                         <li class="@(ViewBag.title == "Meu Perfil" ? "uk-active" : "uk-parent")">
                             <!-- cyg.com/Profiles -->
-                            <a asp-controller="Profiles" asp-action="MeuPerfil">
+                            <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@User.Identity.Name">
                                 <span data-uk-icon="user"></span> Meu perfil</a>
                         </li>
                     </ul>
@@ -55,7 +55,7 @@
                         </li>
                         <li class="@(ViewBag.title == "Meu Perfil" ? "uk-active" : "")">
                             <!-- cyg.com/profiles -->
-                            <a asp-controller="Profiles" asp-action="MeuPerfil">
+                            <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@User.Identity.Name">
                                 <span data-uk-icon="user"></span> Meu perfil</a>
                         </li>
                         <li class="@(ViewBag.title == "Configurações" ? "uk-active" : "")">
