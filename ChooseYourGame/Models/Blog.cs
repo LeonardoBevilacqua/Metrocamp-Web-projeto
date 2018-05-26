@@ -22,7 +22,7 @@ namespace ChooseYourGame.Models
 
         public DateTime CreationTime { get; set; }
 
-        public int ProfileId { get; set; }
+        public string ProfileUserId { get; set; }
         public Profile Profile { get; set; }
 
         public List<BlogTag> BlogTag { get; set; }

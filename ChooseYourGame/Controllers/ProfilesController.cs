@@ -46,8 +46,8 @@ namespace ChooseYourGame.Controllers
 
             var follow = new Follower
             {
-                FollowerProfileId = _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.Id).First(),
-                FollowingProfileId = _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.Id).First()
+                FollowerProfileUserId = _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.UserId).First(),
+                FollowingProfileUserId = _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.UserId).First()
             };
 
             _contexto.Followers.Add(follow);
@@ -64,8 +64,8 @@ namespace ChooseYourGame.Controllers
             {
                 Id = _contexto.Followers
             .Where(f =>
-                f.FollowerProfileId == _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.Id).First() &&
-                f.FollowingProfileId == _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.Id).First())
+                f.FollowerProfileUserId == _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.UserId).First() &&
+                f.FollowingProfileUserId == _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.UserId).First())
             .Select(f => f.Id).First()
             };
 

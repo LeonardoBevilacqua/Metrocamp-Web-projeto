@@ -20,8 +20,7 @@
                             <a asp-controller="Profiles" asp-action="MeuPerfil">@Model.Profile.User.UserName</a>
                         </h2>
                         <p class="uk-margin-remove-top">
-                            <!-- cyg.com/blogs/search/userid -->
-                            <a asp-controller="Blogs" asp-action="Search" asp-route-user="@Model.Profile.User.UserName">Blogs:</a> @Model.BlogsCount</p>
+                            <a asp-controller="Search" asp-route-user="@Model.Profile.User.UserName">Blogs:</a> @Model.BlogsCount</p>
                     </div>
                 </div>
             </div>
@@ -38,7 +37,7 @@
                 </div>
             </div>
             <!-- cyg.com/blogs/create -->
-            <a asp-controller="Blogs" asp-action="Create" class="uk-button uk-background-primary uk-width-1-1">Criar blog</a>
+            <a asp-controller="Blogs" asp-action="BlogManager" class="uk-button uk-background-primary uk-width-1-1">Criar blog</a>
         </div>
         <!-- end card -->
     </div>
@@ -48,7 +47,7 @@
         <article class="uk-article">
             <h1 class="uk-article-title">
                 <!-- cyg.com/Blogs/view/id -->
-                <a asp-controller="Blogs" asp-action="ViewProfile" asp-route-id="@blog.Id" class="uk-link-reset coolvetica-rg">@blog.Title</a>
+                <a asp-controller="Blogs" asp-action="ViewBlog" asp-route-id="@blog.Id" class="uk-link-reset coolvetica-rg">@blog.Title</a>
             </h1>
             <p class="uk-article-meta">Criado por
                 <!-- cyg.com/profiles/view/id -->
@@ -63,10 +62,9 @@
                 {
                     Html.Raw("Tags:");
                 }
-                <!-- cyg.com/blogs/search/tag -->
                 @foreach (var tag in blog.BlogTag)
                 {
-                    <a asp-controller="Blogs" asp-action="Search" asp-route-tag="@tag.Tag.Id">@tag.Tag.Description</a>
+                    <a asp-controller="Search" asp-action="index" asp-route-tag="@tag.Tag.Id">@tag.Tag.Description</a>
                     
                 }
             </p>
@@ -78,11 +76,11 @@
             <div class="uk-grid-small uk-child-width-auto uk-margin-top" data-uk-grid>
                 <div>
                     <!-- cyg.com/blogs/view/id -->
-                    <a asp-controller="Blogs" asp-action="ViewProfile" asp-route-Id="@blog.Id" class="uk-button uk-button-text">Leia mais</a>
+                    <a asp-controller="Blogs" asp-action="ViewBlog" asp-route-Id="@blog.Id" class="uk-button uk-button-text">Leia mais</a>
                 </div>
                 <div>
                     <!-- cyg.com/blogs/view/id#comments -->
-                    <a asp-controller="Blogs" asp-action="ViewProfile" asp-route-Id="@blog.Id" asp-fragment="comments" class="uk-button uk-button-text">@blog.Commentaries.Count @(blog.Commentaries.Count == 1 ? "Comentário": "Comentários")</a>
+                    <a asp-controller="Blogs" asp-action="ViewBlog" asp-route-Id="@blog.Id" asp-fragment="comments" class="uk-button uk-button-text">@blog.Commentaries.Count @(blog.Commentaries.Count == 1 ? "Comentário": "Comentários")</a>
                 </div>
             </div>
         </article>

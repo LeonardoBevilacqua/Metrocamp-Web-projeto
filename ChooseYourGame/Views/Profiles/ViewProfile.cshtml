@@ -7,7 +7,7 @@
             <div class="uk-grid uk-child-width-1-6@s uk-child-width-1-6@m profile-panel uk-margin-remove" data-uk-grid>
                 <p id="username">@Model.Profile.User.UserName</p>
                 <!-- cyg.com/blogs/search/userid -->
-                <p class="profile-panel-status" id="blogs-count"><a asp-controller="Blogs" asp-action="Search" asp-route-user="@Model.Profile.User.UserName">Blogs</a>
+                <p class="profile-panel-status" id="blogs-count"><a asp-controller="Search" asp-route-user="@Model.Profile.User.UserName">Blogs</a>
                     <br>@Model.BlogsCount</p>
                 <!-- cyg.com/profiles/following/id -->
                 <p class="profile-panel-status" id="following-count"><a asp-controller="Profiles" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
@@ -30,7 +30,7 @@
     <article class="uk-article uk-padding">
         <h1 class="uk-article-title">
             <!-- cyg.com/Blogs/view/id -->
-            <a class="uk-link-reset coolvetica-rg" asp-controller="Blogs" asp-action="View" asp-route-id="@blog.Id">@blog.Title</a>
+            <a class="uk-link-reset coolvetica-rg" asp-controller="Blogs" asp-action="ViewBlog" asp-route-id="@blog.Id">@blog.Title</a>
         </h1>
         <p class="uk-article-meta">Criado por
             <!-- cyg.com/profiles/view/user -->
@@ -40,17 +40,17 @@
             @if(blog.BlogTag.Count > 0) { Html.Raw("Tags:"); }
             <!-- cyg.com/blogs/search/tag -->
             @foreach (var tag in blog.BlogTag) {
-            <a asp-controller="Blogs" asp-action="Search" asp-route-tag="@tag.Tag.Id">@tag.Tag.Description</a> }
+            <a asp-controller="Search" asp-route-tag="@tag.Tag.Id">@tag.Tag.Description</a> }
         </p>
         <p class="uk-text-lead">@blog.Description</p>
         <div class="uk-grid-small uk-child-width-auto" data-uk-grid>
             <div>
                 <!-- cyg.com/Blogs/view/id -->
-                <a class="uk-button uk-button-text" asp-controller="Blogs" asp-action="View" asp-route-Id="@blog.Id">Leia mais</a>
+                <a class="uk-button uk-button-text" asp-controller="Blogs" asp-action="ViewBlog" asp-route-Id="@blog.Id">Leia mais</a>
             </div>
             <div>
                 <!-- cyg.com/Blogs/view/id#comments -->
-                <a class="uk-button uk-button-text" asp-controller="Blogs" asp-action="View" asp-route-Id="@blog.Id" asp-fragment="comments">@blog.Commentaries.Count @(blog.Commentaries.Count == 1 ? "Comentário": "Comentários")</a>
+                <a class="uk-button uk-button-text" asp-controller="Blogs" asp-action="ViewBlog" asp-route-Id="@blog.Id" asp-fragment="comments">@blog.Commentaries.Count @(blog.Commentaries.Count == 1 ? "Comentário": "Comentários")</a>
             </div>
         </div>
     </article>

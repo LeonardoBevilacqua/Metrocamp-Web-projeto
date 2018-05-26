@@ -7,8 +7,9 @@ namespace ChooseYourGame.Models
 {
     public class Profile
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Key][ForeignKey(nameof(User))]
+        public string UserId { get; set; }        
+        public IdentityUser User { get; set; }
 
         public string Picture { get; set; }
 
@@ -21,9 +22,6 @@ namespace ChooseYourGame.Models
 
         public string Background { get; set; }
         
-        [Required]
-        public string UserId { get; set; }
-        public IdentityUser User { get; set; }
 
         public IEnumerable<Blog> Blogs { get; set; }
 

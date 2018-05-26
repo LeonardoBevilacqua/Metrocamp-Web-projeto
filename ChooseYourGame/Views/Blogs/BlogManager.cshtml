@@ -4,8 +4,9 @@
 <div class="uk-container uk-padding">
     <!-- Create a tag that we will use as the editable area. -->
     <!-- You can use a div tag as well. -->
-    <!-- cyg.com/blogs/create POST -->
-    <form asp-action="create" method="post" class="uk-form-stacked">
+    <!-- cyg.com/blogs/BlogManager POST -->
+    <form asp-action="BlogManager" method="post" class="uk-form-stacked">
+        <!-- <input type="hidden" asp-for="ProfileId" /> -->
         <div asp-validation-summary="All"></div>
         <div class="uk-margin">
             <label class="uk-form-label" asp-for="Title">Título</label>

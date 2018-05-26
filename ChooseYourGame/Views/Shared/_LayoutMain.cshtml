@@ -12,7 +12,9 @@
 </head>
 
 <body>
-   @Html.Partial("NavigationPartial")
+    @if(User.Identity.IsAuthenticated){
+        @Html.Partial("NavigationPartial")
+    }
     <div id="main" class="uk-background-cover uk-background-muted">
         @RenderBody()
     </div>

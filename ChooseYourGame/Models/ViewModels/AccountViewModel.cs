@@ -5,6 +5,12 @@ namespace ChooseYourGame.Models.ViewModels
 {
     public class AccountViewModel
     {
+        public LogInViewModel Login { get; set; }
+        public SignUpViewModel SignUp { get; set; }
+    }
+
+    public class SignUpViewModel
+    {
         [Required(ErrorMessage = "O Campo Nome é obrigatório."), Display(Name = "Nome")]
         public string Name { get; set; }
 
@@ -31,12 +37,10 @@ namespace ChooseYourGame.Models.ViewModels
             Compare("Password", ErrorMessage = "As senhas não são iguais.")
         ]
         public string Password_Confirmation { get; set; }
-
-        public LogInViewModel Login { get; set; }
     }
 
     public class LogInViewModel
-    {   
+    {
         [Required]
         public string LoginAccount { get; set; }
 

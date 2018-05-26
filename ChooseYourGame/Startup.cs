@@ -35,61 +35,46 @@ namespace ChooseYourGame
             .AddEntityFrameworkStores<ChooseYourGameContext>()
             .AddDefaultTokenProviders();
             services.ConfigureApplicationCookie(options => options.LoginPath = "/Home/LogIn");
+            services.Configure<IdentityOptions>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequiredLength = 4;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredUniqueChars = 0;
+                    options.Password.RequireUppercase = false;
+                }
+            );
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+        UserManager<IdentityUser> userManager, ChooseYourGameContext context,
+        RoleManager<IdentityRole> roleManager)
         {
+            //context.Database.Migrate();
+            context.Database.EnsureCreated();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-                {
-                    var context = serviceScope.ServiceProvider.GetRequiredService<ChooseYourGameContext>();
-                    // alterar para migration
-                    //context.Database.EnsureCreated();
-                    context.Database.Migrate();
-
-                    //Construct                   
-                    if (!context.Users.Any())
-                    {
-                        context.Users.Add(new IdentityUser
-                        {
-                            Email = "dev",
-                            PasswordHash = "1",
-                            UserName = "Leozinho580",
-                        });
-                        context.SaveChanges();
-                    }
-                    if (!context.Profiles.Any())
-                    {
-                        context.Profiles.Add(new Profile
-                        {
-                            UserId = context.Users.First().Id,
-                            Lastname = "Bevilacqua",
-                            Name = "Leonardo"
-                        });
-                        context.SaveChanges();
-                    }
-                    if (!context.Blogs.Any())
-                    {
-                        context.Blogs.Add(new Blog
-                        {
-                            BlogText = "lorem",
-                            CreationTime = DateTime.Now,
-                            Description = "Texto",
-                            ProfileId = context.Profiles.First().Id,
-                            Title = "Titulo teste"
-                        });
-                        context.SaveChanges();
-                    }
-                }
             }
             // else app.UseExceptionHandler("/Home/Error");
 
+            //Construct                   
+            if (!context.Users.Any())
+            {
+                IdentityDataInitializer.SeedData(userManager, roleManager);
 
+                context.Profiles.Add(new Profile
+                {
+                    Name = "Admin",
+                    Lastname = "CYG",
+                    UserId = context.Users.FirstOrDefault().Id
+                });
+                context.SaveChangesAsync();
+            }
 
             app.UseStaticFiles();
             app.UseAuthentication();
@@ -100,5 +85,7 @@ namespace ChooseYourGame
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }

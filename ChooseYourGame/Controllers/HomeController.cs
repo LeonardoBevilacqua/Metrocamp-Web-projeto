@@ -32,7 +32,7 @@ namespace ChooseYourGame.Controllers
         public IActionResult LogIn()
         {
             if(!User.Identity.IsAuthenticated)
-                return View();
+                return View(new AccountViewModel());
 
             return RedirectToAction("Main");
         }
@@ -51,7 +51,7 @@ namespace ChooseYourGame.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(AccountViewModel vm)
+        public async Task<IActionResult> SignUp(SignUpViewModel vm)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +64,8 @@ namespace ChooseYourGame.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "CommonUser");
+
                     _contexto.Profiles.Add(new Profile
                     {
                         Name = vm.Name,
@@ -84,7 +86,6 @@ namespace ChooseYourGame.Controllers
                 }
             }
             return Json(new BadRequestObjectResult(ModelState));
-            //return View("LogIn", vm);
         }
 
         [Authorize]
