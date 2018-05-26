@@ -20,7 +20,8 @@
                             <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@Model.Profile.User.UserName">@Model.Profile.User.UserName</a>
                         </h2>
                         <p class="uk-margin-remove-top">
-                            <a asp-controller="Search" asp-route-user="@Model.Profile.User.UserName">Blogs:</a> @Model.BlogsCount</p>
+                            @Model.Profile.Name @Model.Profile.Lastname
+                        </p>
                     </div>
                 </div>
             </div>
