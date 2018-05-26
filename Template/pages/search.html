@@ -87,61 +87,124 @@
                 <b>Voce esta buscando por: </b>conteudo,da,busca</h2>
 
             <hr>
-            <h2>Resultado:</h2>
-            <ul class="uk-list uk-list-divider">
+            <h2>Resultados:</h2>
+
+            <ul class="uk-subnav uk-subnav-pill" uk-switcher>
                 <li>
-                    <div class="uk-text-large">
-                        <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 1</a> -
-                        <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <a href="#">Usuários</a>
                 </li>
                 <li>
-                    <div class="uk-text-large">
-                        <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 2</a> -
-                        <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </li>
-                <li>
-                    <div class="uk-text-large">
-                        <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 3</a> -
-                        <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <a href="#">Blogs</a>
                 </li>
             </ul>
 
-            <ul class="uk-pagination uk-flex-center" data-uk-margin>
+            <ul class="uk-switcher uk-margin">
                 <li>
-                    <a href="#">
-                        <span data-uk-pagination-previous></span>
-                    </a>
+                    <div class="Profile_list">
+                        <ul class="uk-list uk-list-divider">
+                            <li>
+                                <a href="profile.html" class="uk-text-large uk-text-capitalize">Nome do autor</a>
+                            </li>                            
+                            <li>
+                                <a href="profile.html" class="uk-text-large uk-text-capitalize">Nome do autor</a>
+                            </li>
+                            <li>
+                                <a href="profile.html" class="uk-text-large uk-text-capitalize">Nome do autor</a>
+                            </li>
+                        </ul>
+
+                        <ul class="uk-pagination uk-flex-center" data-uk-margin>
+                            <li>
+                                <a href="#">
+                                    <span data-uk-pagination-previous></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">1</a>
+                            </li>
+                            <li class="uk-disabled">
+                                <span>...</span>
+                            </li>
+                            <li>
+                                <a href="#">5</a>
+                            </li>
+                            <li>
+                                <a href="#">6</a>
+                            </li>
+                            <li class="uk-active">
+                                <span>7</span>
+                            </li>
+                            <li>
+                                <a href="#">8</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span data-uk-pagination-next></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
-                    <a href="#">1</a>
-                </li>
-                <li class="uk-disabled">
-                    <span>...</span>
-                </li>
-                <li>
-                    <a href="#">5</a>
-                </li>
-                <li>
-                    <a href="#">6</a>
-                </li>
-                <li class="uk-active">
-                    <span>7</span>
-                </li>
-                <li>
-                    <a href="#">8</a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span data-uk-pagination-next></span>
-                    </a>
+                    <div class="blogs_list">
+                        <ul class="uk-list uk-list-divider">
+                            <li>
+                                <div class="uk-text-large">
+                                    <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 1</a> -
+                                    <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </li>
+                            <li>
+                                <div class="uk-text-large">
+                                    <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 2</a> -
+                                    <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </li>
+                            <li>
+                                <div class="uk-text-large">
+                                    <a href="blog.html" class="uk-text-uppercase uk-link-heading">Titulo 3</a> -
+                                    <a href="profile.html" class="uk-text-capitalize">Nome do autor</a>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </li>
+                        </ul>
+
+                        <ul class="uk-pagination uk-flex-center" data-uk-margin>
+                            <li>
+                                <a href="#">
+                                    <span data-uk-pagination-previous></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">1</a>
+                            </li>
+                            <li class="uk-disabled">
+                                <span>...</span>
+                            </li>
+                            <li>
+                                <a href="#">5</a>
+                            </li>
+                            <li>
+                                <a href="#">6</a>
+                            </li>
+                            <li class="uk-active">
+                                <span>7</span>
+                            </li>
+                            <li>
+                                <a href="#">8</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span data-uk-pagination-next></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
+
         </div>
     </div>
     <script src="../scripts/uikit.min.js"></script>
