@@ -25,7 +25,9 @@
                             <div class="uk-margin">
                                 <div class="uk-inline">
                                     <span class="uk-form-icon" data-uk-icon="icon:  search"></span>
-                                    <input class="uk-input uk-form-blank" type="text">
+                                    <form asp-controller="Search" asp-action="Index" method="GET">
+                                        <input class="uk-input uk-form-blank" type="text" name="id" style="padding-left:35px">
+                                    </form>
                                 </div>
                             </div>
                         </li>
