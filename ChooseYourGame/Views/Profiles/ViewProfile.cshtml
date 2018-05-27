@@ -7,8 +7,7 @@
             <div class="uk-grid uk-child-width-1-6@s uk-child-width-1-6@m profile-panel uk-margin-remove" data-uk-grid>
                 <p id="username">@Model.Profile.User.UserName</p>
                 <!-- cyg.com/blogs/search/userid -->
-                <p class="profile-panel-status" id="blogs-count"><a asp-controller="Search" asp-route-user="@Model.Profile.User.UserName">Blogs</a>
-                    <br>@Model.BlogsCount</p>
+                <p class="profile-panel-status" id="blogs-count">Blogs<br>@Model.BlogsCount</p>
                 <!-- cyg.com/profiles/following/id -->
                 <p class="profile-panel-status" id="following-count"><a asp-controller="Profiles" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
                     <br>@Model.FollowingCount</p>
@@ -35,12 +34,13 @@
         <p class="uk-article-meta">Criado por
             <!-- cyg.com/profiles/view/user -->
             <a asp-controller="Profiles" asp-action="View" asp-route-id="@blog.Profile.User.UserName" class="uk-text-primary">@blog.Profile.User.UserName</a> , @(blog.CreationTime.ToString("dd") + " de " + blog.CreationTime.ToString("MMMM") + " de " + blog.CreationTime.ToString("yyyy") + ", " + blog.CreationTime.ToString("H:mm")).
-            <br/> Tags:
+            <br/>
             <!-- cyg.com/blogs/search/tag -->
             @if(blog.BlogTag.Count > 0) { Html.Raw("Tags:"); }
             <!-- cyg.com/blogs/search/tag -->
             @foreach (var tag in blog.BlogTag) {
-            <a asp-controller="Search" asp-route-tag="@tag.Tag.Id">@tag.Tag.Description</a> }
+            <a asp-controller="Search" asp-action="Index" asp-route-id="@tag.Tag.Description">@tag.Tag.Description</a> 
+            }
         </p>
         <p class="uk-text-lead">@blog.Description</p>
         <div class="uk-grid-small uk-child-width-auto" data-uk-grid>

@@ -61,7 +61,7 @@
                 }
                 @foreach (var tag in blog.BlogTag)
                 {
-                    <a asp-controller="Search" asp-action="index" asp-route-tag="@tag.Tag.Id">@tag.Tag.Description</a>
+                    <a asp-controller="Search" asp-action="index" asp-route-id="@tag.Tag.Description">@tag.Tag.Description</a>
                     
                 }
             </p>
