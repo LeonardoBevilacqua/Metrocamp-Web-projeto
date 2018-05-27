@@ -13,7 +13,7 @@ namespace ChooseYourGame
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Commentary> Commentaries { get; set; }
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<Follower> Followers { get; set; }
+        public DbSet<Follower> Followers { get; set; }       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
