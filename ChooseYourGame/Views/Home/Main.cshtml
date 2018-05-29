@@ -12,7 +12,7 @@
                         <!-- cyg.com/profiles -->
                         <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@Model.Profile.User.UserName">
                             <img width="40" height="40" alt="@Model.Profile.User.UserName" 
-                            src="@(Model.Profile.Picture != null ? "uploads/avatar/" + Model.Profile.Picture : "uploads/avatar/default-user-image.png")">
+                            src="@(Model.Profile.Picture != null ? "/uploads/avatar/" + Model.Profile.Picture : "/uploads/avatar/default-user-image.png")">
                         </a>
                     </div>
                     <div class="uk-width-expand">

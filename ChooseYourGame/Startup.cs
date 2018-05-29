@@ -17,9 +17,11 @@ namespace ChooseYourGame
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public Startup(IConfiguration configuration)
+        private IHostingEnvironment _CurrentEnvironment{ get; set; } 
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            _CurrentEnvironment = env;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -27,9 +29,13 @@ namespace ChooseYourGame
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var connection = _CurrentEnvironment.IsDevelopment() ?
+            Configuration.GetConnectionString("DefaultConnection") :
+            Configuration.GetConnectionString("ReleaseConnection");
+
             services.AddDbContext<ChooseYourGameContext>(options =>
-                //options.UseInMemoryDatabase("")
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseMySql(connection)
             );
             services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ChooseYourGameContext>()
@@ -49,14 +55,14 @@ namespace ChooseYourGame
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+        public void Configure(IApplicationBuilder app,
         UserManager<IdentityUser> userManager, ChooseYourGameContext context,
         RoleManager<IdentityRole> roleManager)
         {
             context.Database.Migrate();
             // context.Database.EnsureCreated();
 
-            if (env.IsDevelopment())
+            if (_CurrentEnvironment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
