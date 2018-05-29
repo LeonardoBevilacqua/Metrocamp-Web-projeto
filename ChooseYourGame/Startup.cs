@@ -28,7 +28,7 @@ namespace ChooseYourGame
         {
             services.AddMvc();
             services.AddDbContext<ChooseYourGameContext>(options =>
-                options.UseInMemoryDatabase("DefaultConnection")
+                options.UseInMemoryDatabase("")
                 //options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
             services.AddIdentity<IdentityUser, IdentityRole>()
