@@ -15,10 +15,12 @@
                 <p class="profile-panel-status" id="followers-count"><a asp-controller="Profiles" asp-action="Followers" asp-route-id="@Model.Profile.User.UserName">Seguidores</a>
                     <br>@Model.FollowersCount</p>
                 <!-- cyg.com/profiles/follow/id -->
-                @if(@Model.IsFollowing){
-                    <a asp-action="Unfollow" asp-route-id="@Model.Profile.User.UserName" class="uk-button uk-button-danger profile-panel-status" id="follow">Deixar de Seguir</a>
-                }else{
-                    <a asp-action="Follow" asp-route-id="@Model.Profile.User.UserName" class="uk-button uk-button-primary profile-panel-status" id="follow">Seguir</a>
+                @if(User.Identity.IsAuthenticated){
+                    @if(@Model.IsFollowing){
+                        <a asp-action="Unfollow" asp-route-id="@Model.Profile.User.UserName" class="uk-button uk-button-danger profile-panel-status" id="follow">Deixar de Seguir</a>
+                    }else{
+                        <a asp-action="Follow" asp-route-id="@Model.Profile.User.UserName" class="uk-button uk-button-primary profile-panel-status" id="follow">Seguir</a>
+                    }
                 }
             </div>
         </div>
