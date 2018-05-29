@@ -93,7 +93,7 @@ namespace ChooseYourGame.Controllers
             }
 
 
-            _contexto.Followers.Remove(new Follower{Id = followersId});
+            _contexto.Followers.Remove(new Follower { Id = followersId });
             _contexto.SaveChanges();
 
             return RedirectToAction("ViewProfile", new { id = id });
@@ -117,6 +117,7 @@ namespace ChooseYourGame.Controllers
         [HttpPost]
         public async Task<IActionResult> Config(ConfigViewModel vm)
         {
+            string newFilename = null;
             var userId = _userManager.GetUserId(HttpContext.User);
             var user = _contexto.Users.Find(userId);
             var profile = _contexto.Profiles.Find(userId);
@@ -137,13 +138,13 @@ namespace ChooseYourGame.Controllers
                 {
                     System.IO.File.Delete(filename);
                 }
+                // Image Management
+                filename = ContentDispositionHeaderValue.Parse(vm.Picture.ContentDisposition).FileName.Trim('"');
+                filename = this.EnsureCorrectFilename(filename);
+
+                newFilename = Guid.NewGuid().ToString() + Path.GetExtension(filename);
             }
 
-            // Image Management
-            filename = ContentDispositionHeaderValue.Parse(vm.Picture.ContentDisposition).FileName.Trim('"');
-            filename = this.EnsureCorrectFilename(filename);
-
-            string newFilename = Guid.NewGuid().ToString() + Path.GetExtension(filename);
 
             profile.Name = vm.Name;
             profile.Lastname = vm.Lastname;
@@ -151,17 +152,22 @@ namespace ChooseYourGame.Controllers
             _contexto.Update(profile);
             _contexto.SaveChanges();
 
-            // if(user.Email != vm.EMail){
-            //     user.Email = vm.EMail;
-            // }
-            // if(vm.NewPassword != null){
-            //     user.PasswordHash = vm.NewPassword;
-            // }
-            // await _userManager.UpdateAsync(user);
-
-            using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newFilename, "avatar")))
+            if (user.Email != vm.EMail)
             {
-                await vm.Picture.CopyToAsync(output);
+                await _userManager.SetEmailAsync(user, vm.EMail);
+            }
+            if (vm.NewPassword != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                await _userManager.ResetPasswordAsync(user, token, vm.NewPassword);
+            }
+
+            if (vm.Picture != null)
+            {
+                using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newFilename, "avatar")))
+                {
+                    await vm.Picture.CopyToAsync(output);
+                }
             }
 
             return RedirectToAction("Main", "Home");
