@@ -66,10 +66,15 @@ namespace ChooseYourGame.Controllers
             string userId = _userManager.GetUserId(HttpContext.User);
             string profileUserId = _contexto.Users.Where(u => u.UserName == id).Select(u => u.Id).FirstOrDefault();
 
+            if (null != _contexto.Followers.Where(f => f.FollowerProfileUserId == userId && f.FollowingProfileUserId == profileUserId).FirstOrDefault())
+            {
+                return RedirectToAction("ViewProfile", new { id = id });
+            }
+
             var follow = new Follower
             {
-                FollowerProfileUserId = _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.UserId).FirstOrDefault(),
-                FollowingProfileUserId = _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.UserId).FirstOrDefault()
+                FollowerProfileUserId = userId,
+                FollowingProfileUserId = profileUserId
             };
 
             _contexto.Followers.Add(follow);
@@ -81,23 +86,17 @@ namespace ChooseYourGame.Controllers
         {
             string userId = _userManager.GetUserId(HttpContext.User);
             string profileUserId = _contexto.Users.Where(u => u.UserName == id).Select(u => u.Id).FirstOrDefault();
-
-            var follow = new Follower
+            int followersId = _contexto.Followers.Where(f => f.FollowerProfileUserId == userId && f.FollowingProfileUserId == profileUserId).Select(f => f.Id).FirstOrDefault();
+            if (followersId == 0)
             {
-                Id = _contexto.Followers
-            .Where(f =>
-                f.FollowerProfileUserId == _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.UserId).FirstOrDefault() &&
-                f.FollowingProfileUserId == _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.UserId).FirstOrDefault())
-            .Select(f => f.Id).FirstOrDefault()
-            };
+                return RedirectToAction("ViewProfile", new { id = id });
+            }
 
-            _contexto.Followers.Remove(follow);
+
+            _contexto.Followers.Remove(new Follower{Id = followersId});
             _contexto.SaveChanges();
 
-            return RedirectToAction("ViewProfile", new
-            {
-                id = id
-            });
+            return RedirectToAction("ViewProfile", new { id = id });
         }
 
         public IActionResult Config()
@@ -134,7 +133,8 @@ namespace ChooseYourGame.Controllers
             if (vm.Picture != null)
             {
                 filename = _contexto.Profiles.Find(userId).Picture;
-                if(filename != null){
+                if (filename != null)
+                {
                     System.IO.File.Delete(filename);
                 }
             }
