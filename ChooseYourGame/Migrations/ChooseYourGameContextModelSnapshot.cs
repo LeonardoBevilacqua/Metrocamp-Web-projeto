@@ -96,10 +96,6 @@ namespace ChooseYourGame.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FollowerProfileUserId");
-
-                    b.HasIndex("FollowingProfileUserId");
-
                     b.ToTable("Followers");
                 });
 

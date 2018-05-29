@@ -66,10 +66,15 @@ namespace ChooseYourGame.Controllers
             string userId = _userManager.GetUserId(HttpContext.User);
             string profileUserId = _contexto.Users.Where(u => u.UserName == id).Select(u => u.Id).FirstOrDefault();
 
+            if (null != _contexto.Followers.Where(f => f.FollowerProfileUserId == userId && f.FollowingProfileUserId == profileUserId).FirstOrDefault())
+            {
+                return RedirectToAction("ViewProfile", new { id = id });
+            }
+
             var follow = new Follower
             {
-                FollowerProfileUserId = _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.UserId).FirstOrDefault(),
-                FollowingProfileUserId = _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.UserId).FirstOrDefault()
+                FollowerProfileUserId = userId,
+                FollowingProfileUserId = profileUserId
             };
 
             _contexto.Followers.Add(follow);
@@ -81,23 +86,17 @@ namespace ChooseYourGame.Controllers
         {
             string userId = _userManager.GetUserId(HttpContext.User);
             string profileUserId = _contexto.Users.Where(u => u.UserName == id).Select(u => u.Id).FirstOrDefault();
-
-            var follow = new Follower
+            int followersId = _contexto.Followers.Where(f => f.FollowerProfileUserId == userId && f.FollowingProfileUserId == profileUserId).Select(f => f.Id).FirstOrDefault();
+            if (followersId == 0)
             {
-                Id = _contexto.Followers
-            .Where(f =>
-                f.FollowerProfileUserId == _contexto.Profiles.Where(p => p.UserId == userId).Select(p => p.UserId).FirstOrDefault() &&
-                f.FollowingProfileUserId == _contexto.Profiles.Where(p => p.UserId == profileUserId).Select(p => p.UserId).FirstOrDefault())
-            .Select(f => f.Id).FirstOrDefault()
-            };
+                return RedirectToAction("ViewProfile", new { id = id });
+            }
 
-            _contexto.Followers.Remove(follow);
+
+            _contexto.Followers.Remove(new Follower { Id = followersId });
             _contexto.SaveChanges();
 
-            return RedirectToAction("ViewProfile", new
-            {
-                id = id
-            });
+            return RedirectToAction("ViewProfile", new { id = id });
         }
 
         public IActionResult Config()
@@ -118,6 +117,7 @@ namespace ChooseYourGame.Controllers
         [HttpPost]
         public async Task<IActionResult> Config(ConfigViewModel vm)
         {
+            string newFilename = null;
             var userId = _userManager.GetUserId(HttpContext.User);
             var user = _contexto.Users.Find(userId);
             var profile = _contexto.Profiles.Find(userId);
@@ -134,16 +134,17 @@ namespace ChooseYourGame.Controllers
             if (vm.Picture != null)
             {
                 filename = _contexto.Profiles.Find(userId).Picture;
-                if(filename != null){
+                if (filename != null)
+                {
                     System.IO.File.Delete(filename);
                 }
+                // Image Management
+                filename = ContentDispositionHeaderValue.Parse(vm.Picture.ContentDisposition).FileName.Trim('"');
+                filename = this.EnsureCorrectFilename(filename);
+
+                newFilename = Guid.NewGuid().ToString() + Path.GetExtension(filename);
             }
 
-            // Image Management
-            filename = ContentDispositionHeaderValue.Parse(vm.Picture.ContentDisposition).FileName.Trim('"');
-            filename = this.EnsureCorrectFilename(filename);
-
-            string newFilename = Guid.NewGuid().ToString() + Path.GetExtension(filename);
 
             profile.Name = vm.Name;
             profile.Lastname = vm.Lastname;
@@ -151,17 +152,22 @@ namespace ChooseYourGame.Controllers
             _contexto.Update(profile);
             _contexto.SaveChanges();
 
-            // if(user.Email != vm.EMail){
-            //     user.Email = vm.EMail;
-            // }
-            // if(vm.NewPassword != null){
-            //     user.PasswordHash = vm.NewPassword;
-            // }
-            // await _userManager.UpdateAsync(user);
-
-            using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newFilename, "avatar")))
+            if (user.Email != vm.EMail)
             {
-                await vm.Picture.CopyToAsync(output);
+                await _userManager.SetEmailAsync(user, vm.EMail);
+            }
+            if (vm.NewPassword != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                await _userManager.ResetPasswordAsync(user, token, vm.NewPassword);
+            }
+
+            if (vm.Picture != null)
+            {
+                using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newFilename, "avatar")))
+                {
+                    await vm.Picture.CopyToAsync(output);
+                }
             }
 
             return RedirectToAction("Main", "Home");
