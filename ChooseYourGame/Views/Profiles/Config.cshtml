@@ -1,0 +1,91 @@
+@model ConfigViewModel
+@{
+    ViewBag.Title = "Configurações";
+}
+<div class="uk-container uk-padding">
+    <h1 class="uk-heading-line coolvetica-rg">
+        <span>Configurações</span>
+    </h1>
+
+    <form asp-action="Config" method="post" id="signup" enctype="multipart/form-data" class="uk-form-stacked uk-margin-large">
+
+        <div class="uk-child-width-expand@m uk-grid" data-uk-grid>
+            <div>
+                <label class="uk-form-label" asp-for="Name">Nome</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" asp-for="Name" placeholder="Roberto" data-validation="required">
+                </div>
+            </div>
+
+            <div>
+                <label class="uk-form-label" asp-for="Lastname">Sobrenome</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" asp-for="Lastname" placeholder="Silva">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label" asp-for="EMail">Email</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" asp-for="EMail" placeholder="email@email.com" data-validation="required email">
+            </div>
+        </div>
+
+        <div class="uk-child-width-expand@s uk-grid" data-uk-grid>
+            <div>
+                <label class="uk-form-label" asp-for="Picture">Imagem de usuário</label>
+
+                <div data-uk-form-custom="target: true" class="uk-form-controls">
+                    <input asp-for="Picture">
+                    <input class="uk-input" id="PictureHold" placeholder="Selecione uma imagem" disabled>
+                </div>
+
+            </div>
+
+            <div>
+                <label class="uk-form-label" asp-for="CurrentPassword">Senha atual</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" asp-for="CurrentPassword" placeholder="********" data-validation="required">
+                </div>
+            </div>
+
+            <div>
+                <label class="uk-form-label" asp-for="NewPassword_Confirmation">Nova Senha</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" asp-for="NewPassword_Confirmation" placeholder="********" data-validation="strength" data-validation-strength="2" data-validation-optional="true">
+                </div>
+            </div>
+
+            <div>
+                <label class="uk-form-label" asp-for="NewPassword">Confirme a senha</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" asp-for="NewPassword" placeholder="********" data-validation="confirmation" data-validation-confirm="NewPassword_Confirmation">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="uk-margin uk-text-left uk-flex">
+            <button class="uk-button uk-button-primary uk-width-1-2@m" type="submit">Salvar</button>
+            <button class="uk-button uk-button-danger uk-width-1-2@m" id="deleteAccount" type="button">Apagar conta</button>
+        </div>
+
+    </form>
+</div>
+</div>
+@section Scripts {
+    <script src="~/lib/jqueryFormValidator/jquery.form-validator.min.js"></script>
+    <script src="~/js/script.js"></script>
+    <script>
+        $("#deleteAccount").click(function () {
+            //UIkit.modal.confirm('Are you sure', { labels: { ok: 'Yeah', cancel: 'Nope' } });
+            UIkit.modal.confirm('Deseja realmente deletar a conta?', { labels: { ok: 'Deletar', cancel: 'Cancelar' } }).then(function () {
+                alert("Apagou")
+            }, function () {
+                alert("Cancelado")
+            });
+        });
+    </script>
+}

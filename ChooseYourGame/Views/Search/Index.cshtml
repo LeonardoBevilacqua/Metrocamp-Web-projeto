@@ -1,0 +1,124 @@
+@model SearchViewModel 
+@{ViewBag.Title = "Buscar: " + @ViewBag.BuscaId;}
+
+<div class="uk-container uk-padding">
+    <h1 class="uk-heading-line coolvetica-rg">
+        <span>Procurar</span>
+    </h1>
+    <h2>
+        <b>Voce esta buscando por: </b>@ViewBag.BuscaId</h2>
+
+    <h2>Resultados:</h2>
+    
+    @if(Model.Profiles.Count() > 0 || Model.Blogs.Count() > 0){
+    <ul class="uk-subnav uk-subnav-pill" uk-switcher>
+        @if(Model.Profiles.Count() > 0){
+            <li><a href="#">Usuários</a></li>
+        }
+        @if(Model.Blogs.Count() > 0){
+            <li><a href="#">Blogs</a></li>
+        }
+    </ul>
+
+    <ul class="uk-switcher uk-margin">
+        @if(Model.Profiles.Count() > 0){
+        <li>
+            <div class="Profile_list">
+                <ul class="uk-list uk-list-divider">
+                    @foreach (var profile in Model.Profiles) {  
+                    <li>
+                        <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@profile.User.UserName" class="uk-text-large uk-text-capitalize">
+                            @profile.User.UserName
+                        </a>
+                    </li>                   
+                    }
+                </ul>
+
+                <!-- <ul class="uk-pagination uk-flex-center" data-uk-margin>
+                    <li>
+                        <a href="#">
+                            <span data-uk-pagination-previous></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li class="uk-disabled">
+                        <span>...</span>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">6</a>
+                    </li>
+                    <li class="uk-active">
+                        <span>7</span>
+                    </li>
+                    <li>
+                        <a href="#">8</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span data-uk-pagination-next></span>
+                        </a>
+                    </li>
+                </ul> -->
+            </div>
+        </li>
+        }
+
+        @if(Model.Blogs.Count() > 0){
+        <li>
+            <div class="blogs_list">
+                <ul class="uk-list uk-list-divider">
+                    @foreach (var blog in Model.Blogs) { 
+                        <li>
+                            <div class="uk-text-large">
+                                <a asp-controller="Blogs" asp-action="ViewBlog" asp-route-id="@blog.Id" class="uk-text-uppercase uk-link-heading">@blog.Title</a> -
+                                <a class="uk-text-capitalize">@blog.Profile.User.UserName</a>
+                            </div>
+                            <p>@blog.Description</p>
+                        </li>                        
+                     }                     
+                </ul>
+
+                <!-- <ul class="uk-pagination uk-flex-center" data-uk-margin>
+                    <li>
+                        <a href="#">
+                            <span data-uk-pagination-previous></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li class="uk-disabled">
+                        <span>...</span>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">6</a>
+                    </li>
+                    <li class="uk-active">
+                        <span>7</span>
+                    </li>
+                    <li>
+                        <a href="#">8</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span data-uk-pagination-next></span>
+                        </a>
+                    </li>
+                </ul> -->
+            </div>
+        </li>
+        }
+    </ul>
+    }else{
+        <h3>Nenhum resultado encontrado!</h3>
+    }
+
+</div>

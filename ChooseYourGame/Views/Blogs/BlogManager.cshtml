@@ -4,17 +4,35 @@
 <div class="uk-container uk-padding">
     <!-- Create a tag that we will use as the editable area. -->
     <!-- You can use a div tag as well. -->
-    <!-- cyg.com/blogs/create POST -->
-    <form asp-action="create" method="post" class="uk-form-stacked">
+    <!-- cyg.com/blogs/BlogManager POST -->
+    <form asp-action="BlogManager" method="post" class="uk-form-stacked">
+        <!-- <input type="hidden" asp-for="ProfileId" /> -->
         <div asp-validation-summary="All"></div>
+        
         <div class="uk-margin">
             <label class="uk-form-label" asp-for="Title">Título</label>
             <input type="text" class="uk-input" asp-for="Title">
         </div>
+        
         <div class="uk-margin">
             <label class="uk-form-label" asp-for="Description">Assunto do blog</label>
             <textarea class="uk-textarea" asp-for="Description"></textarea>
         </div>
+
+        <div class="uk-margin">
+            <label class="uk-form-label">Tags do blog</label>
+            @foreach (var tag in ViewBag.Tags)
+            {
+                <label><input class="uk-checkbox" type="checkbox" 
+                name='CheckBoxTags' 
+                value="@tag.Id" 
+                checked="@tag.IsSelected"> 
+                    @tag.Description
+                </label>
+            
+            }
+        </div>
+
         <div class="uk-margin">
             <label class="uk-form-label" asp-for="BlogText">Blog</label>
             <textarea asp-for="BlogText"></textarea>

@@ -1,4 +1,4 @@
-@model AccountViewModel
+@model SignUpViewModel
 <!-- create account modal-->
 
 <div id="modal-account" class="uk-modal-container" data-uk-modal>
@@ -10,7 +10,7 @@
         <div class="uk-modal-body">
             <!-- cyw.com/users/signup -->
             <form asp-action="SignUp" asp-controller="Home" method="post" id="signup" class="uk-form-stacked uk-margin-large">
-                <div asp-validation-summary="All" id="AccountErrors"></div>
+                <div id="AccountErrors"></div>
 
                 <div class="uk-child-width-expand@m uk-grid" data-uk-grid>
                     <div>
@@ -54,7 +54,7 @@
                     <div>
                         <label class="uk-form-label" asp-for="Password">Confirme a senha</label>
                         <div class="uk-form-controls">
-                            <input class="uk-input" asp-for="Password" placeholder="********" data-validation="required Confirmation">
+                            <input class="uk-input" asp-for="Password" placeholder="********" data-validation="required confirmation" data-validation-confirm="Password_Confirmation">
                         </div>
                     </div>
 

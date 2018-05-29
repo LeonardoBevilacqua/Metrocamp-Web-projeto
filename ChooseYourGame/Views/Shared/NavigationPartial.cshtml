@@ -14,7 +14,7 @@
                         </li>
                         <li class="@(ViewBag.title == "Meu Perfil" ? "uk-active" : "uk-parent")">
                             <!-- cyg.com/Profiles -->
-                            <a asp-controller="Profiles" asp-action="MeuPerfil">
+                            <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@User.Identity.Name">
                                 <span data-uk-icon="user"></span> Meu perfil</a>
                         </li>
                     </ul>
@@ -25,7 +25,9 @@
                             <div class="uk-margin">
                                 <div class="uk-inline">
                                     <span class="uk-form-icon" data-uk-icon="icon:  search"></span>
-                                    <input class="uk-input uk-form-blank" type="text">
+                                    <form asp-controller="Search" asp-action="Index" method="GET">
+                                        <input class="uk-input uk-form-blank" type="text" name="id" style="padding-left:35px">
+                                    </form>
                                 </div>
                             </div>
                         </li>
@@ -55,7 +57,7 @@
                         </li>
                         <li class="@(ViewBag.title == "Meu Perfil" ? "uk-active" : "")">
                             <!-- cyg.com/profiles -->
-                            <a asp-controller="Profiles" asp-action="MeuPerfil">
+                            <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@User.Identity.Name">
                                 <span data-uk-icon="user"></span> Meu perfil</a>
                         </li>
                         <li class="@(ViewBag.title == "Configurações" ? "uk-active" : "")">

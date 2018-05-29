@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@ViewBag.title - CYG</title>
+    <title>[BETA] @ViewBag.title - CYG</title>
     <link rel="stylesheet" href="~/lib/uikit/css/uikit.min.css" />
     <link rel="stylesheet" href="~/css/style.css" />
     <script src="~/lib/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>
-   @Html.Partial("NavigationPartial")
+    @if(User.Identity.IsAuthenticated){
+        @Html.Partial("NavigationPartial")
+    }
     <div id="main" class="uk-background-cover uk-background-muted">
         @RenderBody()
     </div>

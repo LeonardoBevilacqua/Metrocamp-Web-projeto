@@ -18,8 +18,8 @@ namespace ChooseYourGame.Models.ViewModels
 
         public bool IsFollowing { get; set; }
 
-        private IQueryable<int> _Following { get; set; }
-        private IQueryable<int> _Follower { get; set; }
+        private IQueryable<string> _Following { get; set; }
+        private IQueryable<string> _Follower { get; set; }
 
         private readonly ChooseYourGameContext _context;
 
@@ -35,15 +35,15 @@ namespace ChooseYourGame.Models.ViewModels
             .Include(p => p.Blogs).ThenInclude(b => b.BlogTag).ThenInclude(t => t.Tag)
             .Include(p => p.User)
             .Where(p => p.UserId == userId)
-            .First();
+            .FirstOrDefault();
 
             this._Following = this._context.Followers
-            .Where(f => f.FollowerProfileId == this.Profile.Id)
-            .Select(f => f.FollowingProfileId);
+            .Where(f => f.FollowerProfileUserId == this.Profile.UserId)
+            .Select(f => f.FollowingProfileUserId);
 
             this._Follower = this._context.Followers
-            .Where(f => f.FollowingProfileId == this.Profile.Id)
-            .Select(f => f.FollowerProfileId);
+            .Where(f => f.FollowingProfileUserId == this.Profile.UserId)
+            .Select(f => f.FollowerProfileUserId);
 
             this.BlogsCount = this.Profile.Blogs.Count();
 
@@ -54,7 +54,7 @@ namespace ChooseYourGame.Models.ViewModels
             if (followingBlogs)
             {
                 this.Blogs = this._context.Blogs
-                .Where(b => _Following.Contains(b.ProfileId))
+                .Where(b => _Following.Contains(b.ProfileUserId))
                 .Include(b => b.Profile).ThenInclude(p => p.User)
                 .Include(b => b.Commentaries)
                 .Include(b => b.BlogTag).ThenInclude(t => t.Tag);
@@ -70,12 +70,7 @@ namespace ChooseYourGame.Models.ViewModels
 
         public void CheckFollowing(string userId)
         {
-            int ProfileId = this._context.Profiles
-            .Where(p => p.UserId == userId)
-            .Select(p => p.Id)
-            .First();
-
-            this.IsFollowing = _Follower.Contains(ProfileId);
+            this.IsFollowing = _Follower.Contains(userId);
         }
     }
 }

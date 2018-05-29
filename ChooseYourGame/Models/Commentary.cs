@@ -11,7 +11,7 @@ namespace ChooseYourGame.Models
         [StringLength(255)]
         public string CommentaryText{ get; set; }
         
-        public int ProfileId { get; set; }
+        public string ProfileUserId { get; set; }
         public Profile Profile { get; set; }
 
         public int BlogId { get; set; }
