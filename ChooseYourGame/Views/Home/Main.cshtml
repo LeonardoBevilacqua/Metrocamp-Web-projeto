@@ -11,7 +11,8 @@
                     <div class="uk-width-auto">
                         <!-- cyg.com/profiles -->
                         <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@Model.Profile.User.UserName">
-                            <img width="40" height="40" alt="@Model.Profile.User.UserName" src="@(Model.Profile.Picture != null ? Model.Profile.Picture : "https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200")">
+                            <img width="40" height="40" alt="@Model.Profile.User.UserName" 
+                            src="@(Model.Profile.Picture != null ? "http://localhost:5000/uploads/avatar/" + Model.Profile.Picture : "https://dt.azadicdn.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png?200")">
                         </a>
                     </div>
                     <div class="uk-width-expand">

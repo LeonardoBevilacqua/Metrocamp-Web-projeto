@@ -1,7 +1,12 @@
+using System;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using ChooseYourGame.Models;
 using ChooseYourGame.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,24 +18,19 @@ namespace ChooseYourGame.Controllers
         private readonly ChooseYourGameContext _contexto;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public ProfilesController(ChooseYourGameContext contexto, UserManager<IdentityUser> userManager)
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public ProfilesController(ChooseYourGameContext contexto, UserManager<IdentityUser> userManager, IHostingEnvironment hostingEnvironment)
         {
             _contexto = contexto;
             _userManager = userManager;
+            _hostingEnvironment = hostingEnvironment;
         }
 
-        // public IActionResult MeuPerfil()
-        // {
-        //     string userId = _userManager.GetUserId(HttpContext.User);
-        //     MainViewModel vm = new MainViewModel(_contexto);
-        //     vm.LoadProfileInfo(userId, false);
-
-        //     return View(vm);
-        // }
         [AllowAnonymous]
         public IActionResult ViewProfile(string id)
         {
-            string loggedUserId,userId;
+            string loggedUserId, userId;
             bool isCurrentUser;
             if (id == null)
             {
@@ -41,13 +41,13 @@ namespace ChooseYourGame.Controllers
             userId = userId = _contexto.Users
                     .Where(u => u.UserName == id)
                     .Select(u => u.Id).FirstOrDefault();
-            
+
             if (userId == null)
             {
                 return NotFound();
             }
-            
-            isCurrentUser = loggedUserId == userId;                
+
+            isCurrentUser = loggedUserId == userId;
 
 
             MainViewModel vm = new MainViewModel(_contexto);
@@ -55,7 +55,7 @@ namespace ChooseYourGame.Controllers
 
             if (!isCurrentUser)
             {
-                vm.CheckFollowing(_userManager.GetUserId(HttpContext.User));                
+                vm.CheckFollowing(_userManager.GetUserId(HttpContext.User));
             }
 
             return !isCurrentUser ? View(vm) : View("MeuPerfil", vm);
@@ -98,6 +98,87 @@ namespace ChooseYourGame.Controllers
             {
                 id = id
             });
+        }
+
+        public IActionResult Config()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var profile = _contexto.Profiles.Find(userId);
+
+            var vm = new ConfigViewModel
+            {
+                Name = profile.Name,
+                Lastname = profile.Lastname,
+                EMail = _contexto.Users.Where(u => u.Id == userId).Select(u => u.Email).FirstOrDefault()
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Config(ConfigViewModel vm)
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var user = _contexto.Users.Find(userId);
+            var profile = _contexto.Profiles.Find(userId);
+            var result = await _userManager.CheckPasswordAsync(user,
+             vm.CurrentPassword);
+
+            if (!ModelState.IsValid || !result)
+            {
+                return View(vm);
+            }
+            string filename;
+
+            // find current image to delete if another is send
+            if (vm.Picture != null)
+            {
+                filename = _contexto.Profiles.Find(userId).Picture;
+                if(filename != null){
+                    System.IO.File.Delete(filename);
+                }
+            }
+
+            // Image Management
+            filename = ContentDispositionHeaderValue.Parse(vm.Picture.ContentDisposition).FileName.Trim('"');
+            filename = this.EnsureCorrectFilename(filename);
+
+            string newFilename = Guid.NewGuid().ToString() + Path.GetExtension(filename);
+
+            profile.Name = vm.Name;
+            profile.Lastname = vm.Lastname;
+            profile.Picture = newFilename;
+            _contexto.Update(profile);
+            _contexto.SaveChanges();
+
+            // if(user.Email != vm.EMail){
+            //     user.Email = vm.EMail;
+            // }
+            // if(vm.NewPassword != null){
+            //     user.PasswordHash = vm.NewPassword;
+            // }
+            // await _userManager.UpdateAsync(user);
+
+            using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newFilename, "avatar")))
+            {
+                await vm.Picture.CopyToAsync(output);
+            }
+
+            return RedirectToAction("Main", "Home");
+        }
+
+        // File functions
+        private string EnsureCorrectFilename(string filename)
+        {
+            if (filename.Contains("\\"))
+                filename = filename.Substring(filename.LastIndexOf("\\") + 1);
+
+            return filename;
+        }
+
+        private string GetPathAndFilename(string filename, string folderName)
+        {
+            return this._hostingEnvironment.WebRootPath + "/uploads/" + folderName + "/" + filename;
         }
     }
 }

@@ -53,8 +53,8 @@ namespace ChooseYourGame
         UserManager<IdentityUser> userManager, ChooseYourGameContext context,
         RoleManager<IdentityRole> roleManager)
         {
-            //context.Database.Migrate();
-            context.Database.EnsureCreated();
+            context.Database.Migrate();
+            // context.Database.EnsureCreated();
 
             if (env.IsDevelopment())
             {
