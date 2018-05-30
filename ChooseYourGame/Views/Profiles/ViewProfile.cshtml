@@ -5,7 +5,11 @@
         <div class="profile-userId">
             <img src="@(Model.Profile.Picture != null ? "/uploads/avatar/" +  Model.Profile.Picture : "/uploads/avatar/default-user-image.png")" alt="@Model.Profile.User.UserName">
             <div class="uk-grid uk-child-width-1-6@s uk-child-width-1-6@m profile-panel uk-margin-remove" data-uk-grid>
-                <p id="username">@Model.Profile.User.UserName</p>
+                <p id="username">
+                    @Model.Profile.User.UserName
+                    <br/>
+                    @Model.Profile.Name @Model.Profile.Lastname
+                </p>
                 <!-- cyg.com/blogs/search/userid -->
                 <p class="profile-panel-status" id="blogs-count">Blogs<br>@Model.BlogsCount</p>
                 <!-- cyg.com/profiles/following/id -->
@@ -58,7 +62,7 @@
     </article>
     <hr class="uk-divider-icon"> }
 
-    <div class="uk-text-center uk-padding uk-margin-auto">
+    <!--div class="uk-text-center uk-padding uk-margin-auto">
         <a class="uk-button uk-button-text uk-text-primary" href="#">Carregar mais <span data-uk-icon="plus"></span></a>
-    </div>
+    </div-->
 </main>
