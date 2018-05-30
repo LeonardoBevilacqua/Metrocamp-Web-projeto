@@ -143,12 +143,12 @@ namespace ChooseYourGame.Controllers
                 filename = this.EnsureCorrectFilename(filename);
 
                 newFilename = Guid.NewGuid().ToString() + Path.GetExtension(filename);
+                profile.Picture = newFilename;
             }
 
 
             profile.Name = vm.Name;
-            profile.Lastname = vm.Lastname;
-            profile.Picture = newFilename;
+            profile.Lastname = vm.Lastname;            
             _contexto.Update(profile);
             _contexto.SaveChanges();
 
