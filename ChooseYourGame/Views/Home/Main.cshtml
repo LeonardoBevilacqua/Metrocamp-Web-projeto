@@ -62,8 +62,7 @@
                 }
                 @foreach (var tag in blog.BlogTag)
                 {
-                    <a asp-controller="Search" asp-action="index" asp-route-id="@tag.Tag.Description">@tag.Tag.Description</a>
-                    
+                    <a asp-controller="Search" asp-action="index" asp-route-id="@tag.Tag.Description">@tag.Tag.Description</a>                    
                 }
             </p>
 
@@ -85,10 +84,10 @@
         <hr class="uk-divider-icon"> }
 
 
-        <div class="uk-text-center uk-padding uk-margin-auto">
+        <!-- not working yet div class="uk-text-center uk-padding uk-margin-auto">
             <a class="uk-button uk-button-text uk-text-primary" href="blog.html">Carregar mais
                 <span data-uk-icon="plus"></span>
             </a>
-        </div>
+        </div-->
     </div>
 </div>
