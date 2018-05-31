@@ -1,0 +1,62 @@
+@model List<ProfilesViewModel>
+<div class="uk-container uk-padding">
+    <h1 class="uk-heading-line coolvetica-rg">
+        <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@ViewBag.user" class="uk-link-text">
+            <span>@ViewBag.Title</span>
+        </a>
+    </h1>
+    <div class="uk-flex uk-flex-center uk-flex-wrap uk-margin-auto">
+
+    @if (Model.Count() == 0)
+    {
+        <h2>Sem resultados!</h2>
+    }
+
+    @foreach (var profile in Model)
+    {
+        <!-- card -->
+        <div class="uk-card uk-card-hover uk-card-default uk-card-secondary uk-width-1-4@l uk-padding-remove uk-margin uk-margin-remove-top profiles-card">
+            <div class="uk-card-header uk-background-cover uk-background-blend-multiply uk-background-primary uk-light" style="background-image: url('https://www.hdwallpapers.in/walls/bicycle-wide.jpg')">
+                <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+                    <div class="uk-width-auto">
+                        <!-- cyg.com/profiles/view/id -->
+                        <a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@profile.Profile.User.UserName">
+                            <img width="40" height="40" alt="@profile.Profile.User.UserName" 
+                            src="@(profile.Profile.Picture != null ? "/uploads/avatar/" + profile.Profile.Picture : "/uploads/avatar/default-user-image.png")" alt="@profile.Profile.User.UserName">
+                        </a>
+                    </div>
+                    <div class="uk-width-expand">
+                        <!-- cyg.com/profiles/view/id -->
+                        <h2 class="uk-h4 uk-margin-remove-bottom"><a asp-controller="Profiles" asp-action="ViewProfile" asp-route-id="@profile.Profile.User.UserName">@profile.Profile.User.UserName</a></h2>
+                        <!-- cyg.com/blogs/search/userid -->
+                        <p class="uk-margin-remove-top">@profile.Profile.Name @profile.Profile.Lastname</p>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <div class="uk-grid uk-child-width-1-1@s uk-child-width-1-2@m uk-text-center" data-uk-grid>
+                    <!-- cyg.com/profiles/following/id -->
+                    <p class=""><a asp-controller="Search" asp-action="Following" asp-route-id="@profile.Profile.User.UserName">Seguindo</a>
+                        <br>@profile.FollowingCount</p>
+                    <!-- cyg.com/profiles/followers/id -->
+                    <p class=""><a asp-controller="Search" asp-action="Followers" asp-route-id="@profile.Profile.User.UserName">Seguidores</a>
+                        <br>@profile.FollowersCount</p>
+                </div>
+            </div>
+            <div class="uk-card-footer">
+                <!-- cyg.com/profiles/follow/id -->
+                @if (ViewBag.userId != profile.Profile.UserId)
+                {
+                    @if(@profile.IsFollowing){
+                        <a asp-controller="Profiles" asp-action="Unfollow" asp-route-id="@profile.Profile.User.UserName" class="uk-button uk-button-danger uk-width-1-1">Deixar de Seguir</a>
+                    }else{
+                        <a asp-controller="Profiles" asp-action="Follow" asp-route-id="@profile.Profile.User.UserName" class="uk-button uk-button-primary uk-width-1-1">Seguir</a>
+                    }
+                }
+            </div>
+        </div>
+        <!-- end card -->    
+    }
+    
+    </div>
+</div>
