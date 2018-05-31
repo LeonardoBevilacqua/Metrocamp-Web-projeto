@@ -148,7 +148,7 @@ namespace ChooseYourGame.Controllers
 
 
             profile.Name = vm.Name;
-            profile.Lastname = vm.Lastname;            
+            profile.Lastname = vm.Lastname;
             _contexto.Update(profile);
             _contexto.SaveChanges();
 
@@ -172,6 +172,21 @@ namespace ChooseYourGame.Controllers
 
             return RedirectToAction("Main", "Home");
         }
+
+        // public IActionResult DeleteAccount()
+        // {
+        //     var userId = _userManager.GetUserId(HttpContext.User);
+        //     var user = _contexto.Users.Find(userId);
+
+        //     var result = _userManager.DeleteAsync(user).Result;
+
+        //     if (result.Succeeded)
+        //     {
+        //     return Content("deletado!");                
+        //     }
+        //     return Content(result.ToString());                
+
+        // }
 
         // File functions
         private string EnsureCorrectFilename(string filename)

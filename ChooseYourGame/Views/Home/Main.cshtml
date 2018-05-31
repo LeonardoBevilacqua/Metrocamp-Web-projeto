@@ -30,11 +30,11 @@
                 <div class="uk-grid uk-child-width-1-1@s uk-child-width-1-2@m uk-text-center" data-uk-grid>
                     <p class="" id="following-count">
                         <!-- cyg.com/profiles/following/id -->
-                        <a asp-controller="Profiles" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
+                        <a asp-controller="Search" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
                         <br>@Model.FollowingCount</p>
                     <p class="" id="followers-count">
                         <!-- cyg.com/profiles/followers/id -->
-                        <a asp-controller="Profiles" asp-action="Followers" asp-route-id="@Model.Profile.User.UserName">Seguidores</a>
+                        <a asp-controller="Search" asp-action="Followers" asp-route-id="@Model.Profile.User.UserName">Seguidores</a>
                         <br>@Model.FollowersCount</p>
                 </div>
             </div>

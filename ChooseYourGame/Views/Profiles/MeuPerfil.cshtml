@@ -13,10 +13,10 @@
                 <!-- cyg.com/blogs/search/userid -->
                 <p class="profile-panel-status" id="blogs-count">Blogs<br>@Model.BlogsCount</p>
                 <!-- cyg.com/profiles/following/id -->
-                <p class="profile-panel-status" id="following-count"><a asp-controller="Profiles" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
+                <p class="profile-panel-status" id="following-count"><a asp-controller="Search" asp-action="Following" asp-route-id="@Model.Profile.User.UserName">Seguindo</a>
                     <br>@Model.FollowingCount</p>
                 <!-- cyg.com/profiles/followers/id -->
-                <p class="profile-panel-status" id="followers-count"><a asp-controller="Profiles" asp-action="Followers" asp-route-id="@Model.Profile.User.UserName">Seguidores</a>
+                <p class="profile-panel-status" id="followers-count"><a asp-controller="Search" asp-action="Followers" asp-route-id="@Model.Profile.User.UserName">Seguidores</a>
                     <br>@Model.FollowersCount</p>
             </div>
         </div>
