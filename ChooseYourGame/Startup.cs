@@ -11,6 +11,8 @@ using ChooseYourGame.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace ChooseYourGame
 {
@@ -28,7 +30,7 @@ namespace ChooseYourGame
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization();
 
             var connection = _CurrentEnvironment.IsDevelopment() ?
             Configuration.GetConnectionString("DefaultConnection") :
@@ -59,6 +61,12 @@ namespace ChooseYourGame
         UserManager<IdentityUser> userManager, ChooseYourGameContext context,
         RoleManager<IdentityRole> roleManager)
         {
+            app.UseRequestLocalization(new RequestLocalizationOptions{
+                DefaultRequestCulture = new RequestCulture("pt-Br"),
+                SupportedCultures = {new CultureInfo("pt-Br")},
+                SupportedUICultures = {new CultureInfo("pt-Br")}
+            });
+
             context.Database.Migrate();
             // context.Database.EnsureCreated();
 
