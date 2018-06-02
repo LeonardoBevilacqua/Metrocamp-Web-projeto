@@ -128,15 +128,15 @@ namespace ChooseYourGame.Controllers
             SmtpClient client = new SmtpClient("smtp.live.com");
 
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("leonardo_bevilacqua@hotmail.com");
+            mailMessage.From = new MailAddress("cygnoreplay@hotmail.com");
             mailMessage.To.Add(user.Email);
             mailMessage.IsBodyHtml = true;
             mailMessage.Body = "Este é o E-Mail para recuperação de senha.<br/><a href='" + resetLink
-                + "'>Clique aqui</a> ou acesse " + resetLink + " para recuperar.";
+                + "'>Clique aqui</a> ou acesse o link abaixo para recuperar.<br/>" + resetLink;
             mailMessage.Subject = "CYG - Recuperar senha";
             client.Port = 587;
             client.UseDefaultCredentials = false;
-            client.Credentials = new System.Net.NetworkCredential("email", "senha");
+            client.Credentials = new System.Net.NetworkCredential("cygnoreplay@hotmail.com", "CygpqQP97");
             client.EnableSsl = true;
 
             try

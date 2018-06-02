@@ -10,14 +10,14 @@ namespace ChooseYourGame.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage="O campo Título é obrigatório")]
+        [StringLength(100, ErrorMessage="Tamanho máximo de 100 caracteres")]
         public string Title { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="O campo Assunto do blog é obrigatório")]
         public string Description { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="O campo Blog é obrigatório")]
         public string BlogText { get; set; }
 
         public DateTime CreationTime { get; set; }

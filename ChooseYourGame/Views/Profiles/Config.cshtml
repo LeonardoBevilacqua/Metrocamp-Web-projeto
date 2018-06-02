@@ -80,11 +80,13 @@
     <script src="~/js/script.js"></script>
     <script>
         $("#deleteAccount").click(function () {
-            //UIkit.modal.confirm('Are you sure', { labels: { ok: 'Yeah', cancel: 'Nope' } });
-            UIkit.modal.confirm('Deseja realmente deletar a conta?', { labels: { ok: 'Deletar', cancel: 'Cancelar' } }).then(function () {
-                alert("Apagou")
-            }, function () {
-                alert("Cancelado")
+            UIkit.modal.confirm('Deseja realmente deletar a conta?', { labels: { ok: 'Deletar', cancel: 'Cancelar' } }).then(
+                function () {
+                    var url = "http://" + window.location.host + "/Profiles/DeleteAccount";
+                    window.location.href= url;
+            },  
+                function () {
+                    return false;
             });
         });
     </script>
