@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChooseYourGame.Controllers
 {
@@ -173,20 +174,35 @@ namespace ChooseYourGame.Controllers
             return RedirectToAction("Main", "Home");
         }
 
-        // public IActionResult DeleteAccount()
-        // {
-        //     var userId = _userManager.GetUserId(HttpContext.User);
-        //     var user = _contexto.Users.Find(userId);
+        public async Task<IActionResult> DeleteAccount()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);            
 
-        //     var result = _userManager.DeleteAsync(user).Result;
+            var result = await _userManager.DeleteAsync(await _userManager.FindByIdAsync(userId));
 
-        //     if (result.Succeeded)
-        //     {
-        //     return Content("deletado!");                
-        //     }
-        //     return Content(result.ToString());                
+            if (result.Succeeded)
+            {
+                return RedirectToAction("LogOut","Home");                
+            }
 
-        // }
+            return View();
+
+            // var commentaries = _contexto.Commentaries.Where(c => c.ProfileUserId == userId);
+            // _contexto.RemoveRange(commentaries);
+
+            // var profile = _contexto.Profiles
+            //     .Include(p => p.Blogs)
+            //         .ThenInclude(b => b.BlogTag)
+            //     .Include(p => p.Blogs)
+            //         .ThenInclude(b => b.Commentaries)
+            //     .Include(p=>p.User)
+            //     .Where(p => p.UserId == userId).First();
+
+            // _contexto.Remove(profile);
+            // _contexto.SaveChanges();
+            
+
+        }
 
         // File functions
         private string EnsureCorrectFilename(string filename)

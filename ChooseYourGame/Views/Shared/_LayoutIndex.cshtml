@@ -18,8 +18,14 @@
                     <span>Choose Your Game</span>
                 </h1>
             </div>
-
             <div class="uk-margin-auto uk-margin-auto-vertical uk-flex-row uk-width-1-1@s uk-width-1-2@m uk-width-1-3@l">
+                @if (ViewBag.Message != null)
+                {
+                    <div class="uk-alert-warning" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        <p>@ViewBag.Message</p>
+                    </div>
+                }
                 <div class="uk-card uk-card-default uk-card-body login-panel">
                     @RenderBody()
                 </div>
@@ -29,11 +35,12 @@
             </div>
         </div>
     </main>
+    @RenderSection("Modals", required : false)
     <script src="~/lib/uikit/js/uikit.min.js"></script>
     <script src="~/lib/uikit/js/uikit-icons.min.js"></script>
-    @RenderSection("Modals", required : false)
     <script src="~/lib/jqueryFormValidator/jquery.form-validator.min.js"></script>
     <script src="~/js/script.js"></script>
+    @RenderSection("Scripts", required : false)
 </body>
 
 </html>

@@ -9,8 +9,6 @@ namespace ChooseYourGame.Models.ViewModels
 
         public int FollowersCount { get; set; }
 
-        public bool IsFollowing { get; set; }
-
         private IQueryable<string> _Following { get; set; }
         private IQueryable<string> _Follower { get; set; }
         public ProfilesViewModel() { }
@@ -22,8 +20,6 @@ namespace ChooseYourGame.Models.ViewModels
             
             this.FollowingCount = _Following.Count();
             this.FollowersCount = _Follower.Count();
-
-            IsFollowing = _Follower.Contains(userId);
         }
     }
 

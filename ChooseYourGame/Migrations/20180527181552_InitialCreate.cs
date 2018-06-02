@@ -208,7 +208,7 @@ namespace ChooseYourGame.Migrations
                         column: x => x.ProfileUserId,
                         principalTable: "Profiles",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -285,7 +285,7 @@ namespace ChooseYourGame.Migrations
                         column: x => x.ProfileUserId,
                         principalTable: "Profiles",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
