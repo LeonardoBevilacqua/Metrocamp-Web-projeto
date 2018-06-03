@@ -19,7 +19,7 @@ namespace ChooseYourGame
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        private IHostingEnvironment _CurrentEnvironment{ get; set; } 
+        private IHostingEnvironment _CurrentEnvironment { get; set; }
         public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
@@ -61,10 +61,11 @@ namespace ChooseYourGame
         UserManager<IdentityUser> userManager, ChooseYourGameContext context,
         RoleManager<IdentityRole> roleManager)
         {
-            app.UseRequestLocalization(new RequestLocalizationOptions{
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
                 DefaultRequestCulture = new RequestCulture("pt-Br"),
-                SupportedCultures = {new CultureInfo("pt-Br")},
-                SupportedUICultures = {new CultureInfo("pt-Br")}
+                SupportedCultures = { new CultureInfo("pt-Br") },
+                SupportedUICultures = { new CultureInfo("pt-Br") }
             });
 
             context.Database.Migrate();
@@ -74,7 +75,11 @@ namespace ChooseYourGame
             {
                 app.UseDeveloperExceptionPage();
             }
-            // else app.UseExceptionHandler("/Home/Error");
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
+            }
 
             //Construct                   
             if (!context.Users.Any())

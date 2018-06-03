@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -157,7 +158,8 @@ namespace ChooseYourGame.Controllers
 
         public IActionResult ResetPassword(string token)
         {
-            if(token == null){
+            if (token == null)
+            {
                 return RedirectToAction("LogIn");
             }
             ViewBag.Token = token;
@@ -186,6 +188,16 @@ namespace ChooseYourGame.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult Error(int id)
+        {
+            switch(id){
+                case 404:
+                    return View("Error404");        
+                default:
+                    return View("Error");
+            }
         }
     }
 }
