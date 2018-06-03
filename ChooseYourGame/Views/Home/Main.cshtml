@@ -76,8 +76,8 @@
                     <a asp-controller="Blogs" asp-action="ViewBlog" asp-route-Id="@blog.Id" class="uk-button uk-button-text">Leia mais</a>
                 </div>
                 <div>
-                    <!-- cyg.com/blogs/view/id#comments -->
-                    <a asp-controller="Blogs" asp-action="ViewBlog" asp-route-Id="@blog.Id" asp-fragment="comments" class="uk-button uk-button-text">@blog.Commentaries.Count @(blog.Commentaries.Count == 1 ? "Comentário": "Comentários")</a>
+                    <!-- cyg.com/blogs/view/id#commentaries -->
+                    <a asp-controller="Blogs" asp-action="ViewBlog" asp-route-Id="@blog.Id" asp-fragment="commentaries" class="uk-button uk-button-text">@blog.Commentaries.Count @(blog.Commentaries.Count == 1 ? "Comentário": "Comentários")</a>
                 </div>
             </div>
         </article>

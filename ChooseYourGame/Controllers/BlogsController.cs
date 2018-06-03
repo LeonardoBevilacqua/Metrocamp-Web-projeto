@@ -83,15 +83,15 @@ namespace ChooseYourGame.Controllers
                 _contexto.Entry(vm).Property("Title").IsModified = true;
                 _contexto.Entry(vm).Property("Description").IsModified = true;
                 _contexto.Entry(vm).Property("BlogText").IsModified = true;
-                
+
                 vm.BlogTag = _contexto.Blogs
-                            .Where(b=>b.Id == vm.Id)
-                            .Select(b=>b.BlogTag).FirstOrDefault();
-                
-                vm.BlogTag.RemoveAll(b=>b.BlogId == vm.Id);
+                            .Where(b => b.Id == vm.Id)
+                            .Select(b => b.BlogTag).FirstOrDefault();
+
+                vm.BlogTag.RemoveAll(b => b.BlogId == vm.Id);
                 _contexto.SaveChanges();
             }
-            
+
             List<BlogTag> blogTag = new List<BlogTag>();
             foreach (var tag in checkBoxTags)
             {
@@ -114,20 +114,45 @@ namespace ChooseYourGame.Controllers
 
             var blog = _contexto.Blogs
                 .Include(b => b.Profile)
-                .ThenInclude(p => p.User)
-                .Include(b => b.BlogTag).ThenInclude(bt=>bt.Tag)
+                    .ThenInclude(p => p.User)
+                .Include(b => b.BlogTag).ThenInclude(bt => bt.Tag)
+                .Include(b => b.Commentaries)
+                    .ThenInclude(c => c.Profile).ThenInclude(p => p.User)
                 .SingleOrDefault(b => b.Id == id);
 
+            blog.Commentaries.Reverse();
+
             ViewBag.UserName = _userManager.GetUserName(HttpContext.User);
+            ViewBag.BlogId = blog.Id;
 
             return View(blog);
         }
 
+        public IActionResult Comment(int blogId, string commentary)
+        {
+            var url = Url.Action(nameof(ViewBlog), new { id = blogId }) + "#commentaries";
+            var newCommentary = new Commentary
+            {
+                ProfileUserId = _userManager.GetUserId(HttpContext.User),
+                BlogId = blogId,
+                CommentaryText = commentary
+            };
+            _contexto.Add(newCommentary);
+            _contexto.SaveChanges();
+
+            return Redirect(url);
+        }
+
         public IActionResult Delete(int id)
         {
+            var blog = _contexto.Blogs.Find(id);
+            var userId = _userManager.GetUserId(HttpContext.User);
 
-            _contexto.Blogs.Remove(new Blog { Id = id });
-            _contexto.SaveChanges();
+            if (blog.ProfileUserId == userId)
+            {
+                _contexto.Blogs.Remove(blog);
+                _contexto.SaveChanges();
+            }
 
             return RedirectToAction("ViewProfile", "Profiles", new { id = _userManager.GetUserName(HttpContext.User) });
         }
