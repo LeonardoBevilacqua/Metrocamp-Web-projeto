@@ -118,7 +118,8 @@ namespace ChooseYourGame.Controllers
         [HttpPost]
         public async Task<IActionResult> Config(ConfigViewModel vm)
         {
-            string newFilename = null;
+            string newpicture = null;
+            string newbackground = null;
             var userId = _userManager.GetUserId(HttpContext.User);
             var user = _contexto.Users.Find(userId);
             var profile = _contexto.Profiles.Find(userId);
@@ -129,22 +130,37 @@ namespace ChooseYourGame.Controllers
             {
                 return View(vm);
             }
-            string filename;
+            string picture;
+            string background;
 
             // find current image to delete if another is send
             if (vm.Picture != null)
             {
-                filename = _contexto.Profiles.Find(userId).Picture;
-                if (filename != null)
+                picture = _contexto.Profiles.Find(userId).Picture;
+                if (picture != null)
                 {
-                    System.IO.File.Delete(filename);
+                    System.IO.File.Delete(picture);
                 }
                 // Image Management
-                filename = ContentDispositionHeaderValue.Parse(vm.Picture.ContentDisposition).FileName.Trim('"');
-                filename = this.EnsureCorrectFilename(filename);
+                picture = ContentDispositionHeaderValue.Parse(vm.Picture.ContentDisposition).FileName.Trim('"');
+                picture = this.EnsureCorrectFilename(picture);
 
-                newFilename = Guid.NewGuid().ToString() + Path.GetExtension(filename);
-                profile.Picture = newFilename;
+                newpicture = Guid.NewGuid().ToString() + Path.GetExtension(picture);
+                profile.Picture = newpicture;
+            }
+            if (vm.Background != null)
+            {
+                background = _contexto.Profiles.Find(userId).Background;
+                if (background != null)
+                {
+                    System.IO.File.Delete(background);
+                }
+                // Image Management
+                background = ContentDispositionHeaderValue.Parse(vm.Background.ContentDisposition).FileName.Trim('"');
+                background = this.EnsureCorrectFilename(background);
+
+                newbackground = Guid.NewGuid().ToString() + Path.GetExtension(background);
+                profile.Background = newbackground;
             }
 
 
@@ -165,9 +181,16 @@ namespace ChooseYourGame.Controllers
 
             if (vm.Picture != null)
             {
-                using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newFilename, "avatar")))
+                using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newpicture, "avatar")))
                 {
                     await vm.Picture.CopyToAsync(output);
+                }
+            }
+            if (vm.Background != null)
+            {
+                using (FileStream output = System.IO.File.Create(this.GetPathAndFilename(newbackground, "background")))
+                {
+                    await vm.Background.CopyToAsync(output);
                 }
             }
 

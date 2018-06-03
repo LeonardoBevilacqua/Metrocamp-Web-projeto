@@ -23,7 +23,6 @@
                     <input class="uk-input" asp-for="Lastname" placeholder="Silva">
                 </div>
             </div>
-
         </div>
 
         <div class="uk-margin">
@@ -41,8 +40,19 @@
                     <input asp-for="Picture">
                     <input class="uk-input" id="PictureHold" placeholder="Selecione uma imagem" disabled>
                 </div>
-
             </div>
+            
+            <div>
+                <label class="uk-form-label" asp-for="Background">Background</label>
+
+                <div data-uk-form-custom="target: true" class="uk-form-controls">
+                    <input asp-for="Background">
+                    <input class="uk-input" id="BackgroundHold" placeholder="Selecione uma imagem" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-child-width-expand@s uk-grid" data-uk-grid>
 
             <div>
                 <label class="uk-form-label" asp-for="CurrentPassword">Senha atual</label>

@@ -15,6 +15,7 @@ namespace ChooseYourGame.Models.ViewModels
         public string EMail { get; set; }
 
         public IFormFile Picture { get; set; }
+        public IFormFile Background { get; set; }
 
         [Required, DataType("password")]
         public string CurrentPassword { get; set; }
