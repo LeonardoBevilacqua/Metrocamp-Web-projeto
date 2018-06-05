@@ -62,6 +62,11 @@ namespace ChooseYourGame.Controllers
         {
             if (ModelState.IsValid)
             {
+               if(await _userManager.FindByEmailAsync(vm.EMail) != null){
+                   ModelState.AddModelError("", "Email já esta em uso.");
+                   return Json(new BadRequestObjectResult(ModelState));
+               }
+
                 var user = new IdentityUser
                 {
                     UserName = vm.UserName,
