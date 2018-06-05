@@ -93,7 +93,7 @@ namespace ChooseYourGame.Controllers
                 {
                     foreach (var error in result.Errors)
                     {
-                        ModelState.AddModelError("", error.Description);
+                        ModelState.AddModelError("", "O nome de usuário já existe.");
                     }
                 }
             }

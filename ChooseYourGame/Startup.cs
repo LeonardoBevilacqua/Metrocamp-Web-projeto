@@ -63,9 +63,9 @@ namespace ChooseYourGame
         {
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("pt-Br"),
-                SupportedCultures = { new CultureInfo("pt-Br") },
-                SupportedUICultures = { new CultureInfo("pt-Br") }
+                DefaultRequestCulture = new RequestCulture("pt-BR"),
+                SupportedCultures = { new CultureInfo("pt-BR") },
+                SupportedUICultures = { new CultureInfo("pt-BR") }
             });
 
             context.Database.Migrate();
