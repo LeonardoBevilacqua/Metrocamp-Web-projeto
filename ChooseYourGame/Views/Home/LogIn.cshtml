@@ -20,8 +20,8 @@
 <script>
     // SignUp
     $("#signup").submit(function(e) {
-        var errorContent = $("#AccountErrors ul");
-        $(errorContent).html("");
+        var errorContent = $("#AccountErrors");
+        $(errorContent).html('<div class="uk-alert-warning" uk-alert><a class="uk-alert-close" uk-close></a><p>Aguarde.</p></div>');
         e.preventDefault();
 
         $.ajax({
@@ -30,12 +30,19 @@
             data: $(this).serialize(),
             success: function(data) {
                 if (data.succeeded) {
+                    $(errorContent).html('<div class="uk-alert-success" uk-alert><a class="uk-alert-close" uk-close></a><p>Sucesso!<br/>Conectando . . .</p></div>');
                     var url = "http://" + window.location.host + "/Home/Main";
                     window.location.href= url;
                 } else {
+                    var ul = $("<ul></ul>");
                     $.each(data.value, function(key, value) {
-                        $(errorContent).append($("<li>" + value[0] + "</li>"));
+                        $(ul).append($("<li>" + value[0] + "</li>"));
                     });
+                    $(errorContent).html(
+                        $('<div class="uk-alert-warning" uk-alert></div>')
+                        .append($('<a class="uk-alert-close" uk-close></a>'))
+                        .append(ul)
+                    );
                 }
             }
         });
